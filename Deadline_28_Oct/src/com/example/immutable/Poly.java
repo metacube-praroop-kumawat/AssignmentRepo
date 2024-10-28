@@ -3,6 +3,7 @@ package com.example.immutable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public final class Poly {
 	private final Integer[][] polynomial;
@@ -75,30 +76,30 @@ public final class Poly {
 		int iterator1 = polynomial.length-1;
 		int iterator2 = polynomial1.polynomial.length-1;
 		int i = 0;
-		while ( iterator1 >= 0 && iterator2 >= 0 ) {
-			if ( polynomial[iterator1][0] > polynomial1.polynomial[iterator2][0] ) {
+		while (iterator1 >= 0 && iterator2 >= 0 ) {
+			if (polynomial[iterator1][0] > polynomial1.polynomial[iterator2][0]) {
 				ans[i][0] = polynomial[iterator1][0];
 				ans[i][1] = polynomial[iterator1][1];
 				iterator1--;
-			} else if ( polynomial[iterator1][0] < polynomial1.polynomial[iterator2][0] ) {
+			} else if (polynomial[iterator1][0] < polynomial1.polynomial[iterator2][0]) {
 				ans[i][0] = polynomial1.polynomial[iterator2][0];
 				ans[i][1] = polynomial1.polynomial[iterator2][1];
 				iterator2--;
 			} else {
-				ans[i][0] = polynomial[iterator1][0] ;
+				ans[i][0] = polynomial[iterator1][0];
 				ans[i][1] = polynomial[iterator1][1] + polynomial1.polynomial[iterator2][1];
 				iterator1--;
 				iterator2--;
 			}
 			i++;
 		}
-		while ( iterator1 >= 0 ) {
+		while (iterator1 >= 0) {
 			ans[i][0] = polynomial[iterator1][0];
 			ans[i][1] = polynomial[iterator1][1];
 			iterator1--;
 			i++;
 		} 
-		while ( iterator2 >= 0  ) {
+		while (iterator2 >= 0) {
 			ans[i][0] = polynomial1.polynomial[iterator2][0];
 			ans[i][1] = polynomial1.polynomial[iterator2][1];
 			iterator2--;
@@ -108,6 +109,31 @@ public final class Poly {
 		Poly ansPolynomial = new Poly(ans);
 		ansPolynomial.printPolynomial();
 		return ansPolynomial;
+	}
+	
+	public Poly multiplyPoly(Poly polynomial2) {
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < polynomial.length; i++) {
+			for (int j = 0; j < polynomial2.polynomial.length; j++) {
+				if (map.containsKey(polynomial[i][0]+polynomial2.polynomial[j][0])) {
+					map.put(polynomial[i][0]+polynomial2.polynomial[j][0], 
+					map.get(polynomial[i][0]+polynomial2.polynomial[j][0])+ polynomial[i][1]*polynomial2.polynomial[j][1]);
+				} else {
+					map.put(polynomial[i][0]+polynomial2.polynomial[j][0], polynomial[i][1]*polynomial2.polynomial[j][1]);
+				}
+			}
+		}
+		Integer ans[][] = new Integer[map.size()][2];
+		int index = 0;
+		for (Integer degree : map.keySet()) {
+			ans[index][0] = degree;
+			ans[index][1] = map.get(degree);
+			index++;
+		}
+		Poly ansPolynomial = new Poly(ans);
+		System.out.println(ansPolynomial.printPolynomial());
+		return ansPolynomial;
+		
 	}
 	
 
