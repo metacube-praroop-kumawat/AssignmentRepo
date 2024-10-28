@@ -6,8 +6,14 @@ public class main {
 		// TODO Auto-generated method stub
 		IntSet IntegerArrayObject1 = new IntSet(new Integer[]{1,3,6,7});
 		IntSet integerArrayObject2 = new IntSet(new Integer[]{2,3,6});
-		IntegerArrayObject1.getComplement();
+//		IntegerArrayObject1.union(integerArrayObject2);
 		//System.out.println(IntegerArrayObject1.getComplement());
+		Integer arr[][] = {{2,1}, {1,3}, {0,1}};
+		Poly polynomial = new Poly(arr);
+		Integer arr1[][] = {{4,1},{3,1},{2,1},{1,1},{0,1},{5,3}};
+		Poly poly2 = new Poly(arr1);
+		Poly poly3 = poly2.addPolynomial(polynomial);
+		System.out.println(poly3.printPolynomial());
 	}
 
 }

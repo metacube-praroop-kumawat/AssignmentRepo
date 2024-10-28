@@ -69,6 +69,36 @@ public final class IntSet {
 		return complement;
 	}
 	
+	//get union of two sets
+	public Integer[] union ( IntSet intSet ) {
+		boolean universalSet[] = new boolean[1000];
+		/*for ( int i = 0, j = 0; i < set.length, j < intSet.set.length; i++, j++ ) {
+			
+		}*/
+		for ( int i = 0; i < set.length; i++) {
+			universalSet[set[i]-1] = true;
+		}
+		for( int i = 0; i < intSet.set.length; i++ ) {
+			universalSet[intSet.set[i]-1] = true;
+		}
+		int ansSize = 0;
+		int index = 0;
+		for( int i = 0; i < universalSet.length; i++ ) {
+			if(universalSet[i] == true) {
+				ansSize++;
+			}
+		}
+		Integer union[] = new Integer[ansSize];
+		for( int i = 0; i < universalSet.length; i++ ) {
+			if(universalSet[i] == true) {
+				union[index] = i+1;
+				index ++;
+			}
+		}
+		printSet(union);
+		return union;		
+	}
+	
 	public void printSet(Integer set[]) {
 		for (int i = 0; i < set.length; i++ ) {
 			System.out.print(set[i]+", ");
