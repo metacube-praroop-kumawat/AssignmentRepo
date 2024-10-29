@@ -15,7 +15,7 @@ import java.util.HashMap;
 public final class Poly {
 	private final Integer[][] polynomial;
 	
-	public Poly(Integer[][] polynomial ) {
+	public Poly(Integer[][] polynomial) {
 		Arrays.sort(polynomial, Comparator.comparingDouble(o -> o[0]));
 		this.polynomial  = new Integer[polynomial.length][2];
 		//polynomial[][0] -> degree
@@ -43,7 +43,7 @@ public final class Poly {
 			} else if (polynomial[i][1] == 1 && polynomial[i][0] == 1 && i!=polynomial.length-1) {
 				sb.append("x ");
 			//degree is 1 and coefficient is greater than 1,eg:- 3x is printed	
-			} else if ( polynomial[i][0] == 1 && polynomial[i][1] > 1 ) {
+			} else if (polynomial[i][0] == 1 && polynomial[i][1] > 1) {
 				sb.append(polynomial[i][1]+"x ");
 			//degree is greater than 1 and coefficient is 1, eg:- x^2	
 			} else if (polynomial[i][0] > 1 && polynomial[i][1] == 1) {
@@ -52,7 +52,7 @@ public final class Poly {
 			} else {
 				sb.append(polynomial[i][1]+"x^"+polynomial[i][0]);
 			}
-			if(i!=0) {
+			if (i!=0) {
 				sb.append(" + ");
 			}
 		}
@@ -77,7 +77,7 @@ public final class Poly {
 	 * gives the highest degree of the polynomial expression
 	 * @return Integer the highest degree
 	 */
-	public Integer degree () {
+	public Integer degree() {
 		//last index in array stores the highest degree
 		return polynomial[polynomial.length-1][0];
 	}
