@@ -17,8 +17,8 @@ public final class IntSet {
 	public IntSet(Integer[] elements) {
 		set = new Integer[elements.length];
 		int indexOfIntSetArray = 0;
-		for ( int i = 0; i < elements.length; i++ ) {
-			if ( elements[i] >= 1 && elements[i] <= 1000 ) {
+		for (int i = 0; i < elements.length; i++) {
+			if (elements[i] >= 1 && elements[i] <= 1000) {
 				set[indexOfIntSetArray] = elements[i];
 				indexOfIntSetArray++;
 			} else {
@@ -26,6 +26,7 @@ public final class IntSet {
 			}
 		}
 	}
+	
 	/**
 	 * check if parameter x is a part of set or not
 	 * @param x to value in Set which we are looking for
