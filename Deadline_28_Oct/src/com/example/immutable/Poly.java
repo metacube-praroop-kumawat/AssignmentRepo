@@ -3,12 +3,11 @@ package com.example.immutable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.ArrayList;
 
 public final class Poly {
 	private final Integer[][] polynomial;
 	
-	public Poly( Integer[][] polynomial ) {
+	public Poly(Integer[][] polynomial ) {
 		Arrays.sort(polynomial, Comparator.comparingDouble(o -> o[0]));
 		this.polynomial  = new Integer[polynomial.length][2];
 		//polynomial[][0] -> degree
@@ -20,7 +19,6 @@ public final class Poly {
 			this.polynomial[i][0] = polynomial[i][0];
 			this.polynomial[i][1] = polynomial[i][1];
 		}
-
 	}
 	
 	public String printPolynomial() {
@@ -58,7 +56,7 @@ public final class Poly {
 	
 	public Poly addPolynomial ( Poly polynomial1 ) {
 		//distinct values
-		HashMap<Integer, Integer> map = new HashMap<>();
+		/*HashMap<Integer, Integer> map = new HashMap<>();
 		for( int i = 0; i< polynomial.length; i++) {
 			if(map.containsKey(polynomial[i][0])) {
 				map.put(polynomial[i][0], map.get(polynomial[i][0])+polynomial[i][1]);
@@ -104,10 +102,30 @@ public final class Poly {
 			ans[i][1] = polynomial1.polynomial[iterator2][1];
 			iterator2--;
 			i++;
-		}
+		}*/
 		
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < polynomial.length; i++) {
+			if (map.containsKey(polynomial[i][0])) {
+				map.put(polynomial[i][0], map.get(polynomial[i][0])+polynomial[i][1]);
+			} else {
+				map.put(polynomial[i][0], polynomial[i][1]);
+			}
+		}
+		for (int i = 0; i < polynomial1.polynomial.length; i++) {
+			if (map.containsKey(polynomial1.polynomial[i][0])) {
+				map.put(polynomial1.polynomial[i][0], map.get(polynomial1.polynomial[i][0])+polynomial1.polynomial[i][1]);
+			} else {
+				map.put(polynomial1.polynomial[i][0], polynomial1.polynomial[i][1]);
+			}
+		}
+		Integer ans[][] = new Integer[map.size()][2];
+		int index = 0;
+		for (Integer degree : map.keySet()) {
+			ans[index][0] = degree;
+			ans[index++][1] = map.get(degree);
+		}
 		Poly ansPolynomial = new Poly(ans);
-		ansPolynomial.printPolynomial();
 		return ansPolynomial;
 	}
 	
@@ -131,7 +149,6 @@ public final class Poly {
 			index++;
 		}
 		Poly ansPolynomial = new Poly(ans);
-		System.out.println(ansPolynomial.printPolynomial());
 		return ansPolynomial;
 		
 	}
