@@ -76,33 +76,95 @@ public final class SparceMatrices {
 	public SparceMatrices addTwoMatrix(ArrayList<DieCase> matrix2) {
 		SparceMatrices addResult;
 		ArrayList<DieCase> result = new ArrayList<>();
-		for (int i = 0; i < matrix.size(); i++) {
-			for (int j = 0; j < matrix2.size(); j++) {
-				if (matrix.get(i).column == matrix2.get(j).column || matrix.get(i).row == matrix2.get(j).row) {
-					DieCase dieCase = new DieCase(matrix.get(i).row, matrix.get(i).column, matrix.get(i).data + matrix2.get(j).data);
-					result.add(dieCase);
-				} else if (matrix.get(i).row == matrix2.get(j).row && matrix.get(i).column != matrix2.get(j).column) {
-					if (matrix.get(i).column > matrix2.get(j).column) {
-						DieCase dieCase = new DieCase(matrix2.get(j).row, matrix2.get(j).column, matrix2.get(j).data);
-						result.add(dieCase);
-					} else {
-						DieCase dieCase = new DieCase(matrix.get(i).row, matrix.get(i).column, matrix.get(i).data);
-						result.add(dieCase);
+		int iteratorOnMatrix = 0;
+		int iteratorOnMatrix2 = 0;
+		while (iteratorOnMatrix < matrix.size() && iteratorOnMatrix2 < matrix2.size()) {
+			if (matrix.get(iteratorOnMatrix).row == matrix2.get(iteratorOnMatrix2).row) {
+				if (matrix.get(iteratorOnMatrix).column == matrix2.get(iteratorOnMatrix2).column) {
+					DieCase diecase = new DieCase(matrix.get(iteratorOnMatrix).row, matrix.get(iteratorOnMatrix).column, matrix.get(iteratorOnMatrix).data + matrix2.get(iteratorOnMatrix2).data);
+					result.add(diecase);
+					iteratorOnMatrix++;
+					iteratorOnMatrix2++;
+				} else if (matrix.get(iteratorOnMatrix).column < matrix2.get(iteratorOnMatrix2).column) {
+					DieCase diecase = new DieCase(matrix.get(iteratorOnMatrix).row, matrix.get(iteratorOnMatrix).column, matrix.get(iteratorOnMatrix).data);
+					result.add(diecase);
+					iteratorOnMatrix++;
+				} else {
+					DieCase diecase = new DieCase(matrix2.get(iteratorOnMatrix2).row, matrix2.get(iteratorOnMatrix2).column, matrix2.get(iteratorOnMatrix2).data);
+					result.add(diecase);
+					iteratorOnMatrix2++;
 					}
-				} else if (matrix.get(i).row < matrix2.get(j).row ) {
-					DieCase dieCase = new DieCase(matrix.get(i).row, matrix.get(i).column, matrix.get(i).data);
-					result.add(dieCase);
-					//matrix2 pair is less than matrix
-				} else if (matrix.get(i).row > matrix2.get(j).row ) {
-					DieCase dieCase = new DieCase(matrix2.get(j).row, matrix2.get(j).column, matrix2.get(j).data);
-					result.add(dieCase);
+				} else if (matrix.get(iteratorOnMatrix).row < matrix2.get(iteratorOnMatrix2).row) {
+					DieCase diecase = new DieCase(matrix.get(iteratorOnMatrix).row, matrix.get(iteratorOnMatrix).column, matrix.get(iteratorOnMatrix).data);
+					result.add(diecase);
+					iteratorOnMatrix++;
+				} else {
+					DieCase diecase = new DieCase(matrix2.get(iteratorOnMatrix2).row, matrix2.get(iteratorOnMatrix2).column, matrix2.get(iteratorOnMatrix2).data);
+					result.add(diecase);
+					iteratorOnMatrix2++;
 				}
-			}
+		}
+		while (iteratorOnMatrix < matrix.size()) {
+			DieCase diecase = new DieCase(matrix.get(iteratorOnMatrix).row, matrix.get(iteratorOnMatrix).column, matrix.get(iteratorOnMatrix).data);
+			result.add(diecase);
+			iteratorOnMatrix++;
+		}
+		while (iteratorOnMatrix2 < matrix2.size()) {
+			DieCase diecase = new DieCase(matrix2.get(iteratorOnMatrix2).row, matrix2.get(iteratorOnMatrix2).column, matrix2.get(iteratorOnMatrix2).data);
+			result.add(diecase);
+			iteratorOnMatrix2++;
 		}
 		addResult = new SparceMatrices(result);
 		return addResult;		
 	}
 
+	public SparceMatrices multiplyMatrix(ArrayList<DieCase> matrix2, int rowsA, int colsA, int colsB) {
+		//Result matrix elements
+		ArrayList<DieCase> result = new ArrayList<>();
+		
+		//Map matrix B by column to make lookup efficient
+		//group non zero elems of matrix2 by their col
+		ArrayList<DieCase>[] bColMap = new ArrayList[colsB];
+		for (int i = 0; i < colsB; i++) {
+			bColMap[i] = new ArrayList<>();
+		}
+		
+		for (DieCase bElem : matrix) {
+			bColMap[bElem.row].add(bElem);//grouping by row in b
+		}
+		
+		//multiplication logic
+		for (DieCase aElem : matrix2) {
+			int aRow = aElem.row;
+			int aCol = aElem.column;
+			int aVal = aElem.data;
+			
+			//for each element in B that shares the same column as aElem
+			for (DieCase bElem : bColMap[aCol]) {
+				
+				//we found matching positions in A and B to multiply
+				int resultRow = aRow;
+				int resultCol = bElem.column;
+				int product = aVal * bElem.data;
+				
+				//check if there a already an entry for (resultRow, resultCol)
+				boolean found = false;
+				for (DieCase resElem : result) {
+					if (resElem.row == resultRow && resElem.column == resultCol) {
+						resElem.data += product;
+						found = true;
+						break;
+					}
+				}
+				//if no entry exists create a new one
+				if (!found) {
+					result.add(new DieCase(resultRow, resultCol, product));
+				}
+			}
+		}
+		SparceMatrices multiplyResult = new SparceMatrices(result);
+		return multiplyResult;	
+	}
 	
 	
 }
