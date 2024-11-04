@@ -14,17 +14,28 @@ import java.util.Collections;
 
 public final class SparceMatrices {
 	private final ArrayList<DieCase> matrix = new ArrayList<>(); 
-	
+	/**
+	 * constructor
+	 * @param matrix ArrayList containing nonzero elements of matrix
+	 */
 	public SparceMatrices(ArrayList<DieCase> matrix) {
 		for (int i = 0; i < matrix.size(); i++ ) {
 			this.matrix.add(matrix.get(i));
 		}
 	}
 	
+	/**
+	 * getter function 
+	 * @return the matrix which have nonzero elements of matrix
+	 */
 	public ArrayList<DieCase> getMatrix() {
 		return this.matrix;	
 	}
 	
+	/**
+	 * printing the matrix
+	 * @param matrix ArrayList containing nonzero elements of matrix
+	 */
 	public void printMatrix(ArrayList<DieCase> matrix) {
 		int maxRowIndex = 0;
 		int maxColumnIndex = 0;
@@ -47,27 +58,39 @@ public final class SparceMatrices {
 		}
 	}
 	
+	/**
+	 * to add a nonzero element of matrix to ArrayList
+	 * @param dieCase DieCase object containing row, column and data of the entry
+	 */
 	public void addDieCase(DieCase dieCase) {
 		matrix.add(dieCase);
 	}
 	
-	public SparceMatrices transposeOfMatrix() {
+	/**
+	 * to get a transpose of a sparse matrix
+	 * @return SparceMatrices instance 
+	 */
+	public ArrayList<DieCase> transposeOfMatrix() {
 		ArrayList<DieCase> transposeMatrix = new ArrayList<>();
 		for (int i = 0; i < matrix.size(); i++) {
 			 transposeMatrix.add(new DieCase(matrix.get(i).column,matrix.get(i).row,matrix.get(i).data)) ;
 		}
-		SparceMatrices result = new SparceMatrices(transposeMatrix);
-		return result;
+//		SparceMatrices result = new SparceMatrices(transposeMatrix);
+		return transposeMatrix;
 	}
 	
+	/**
+	 * to check if the matrix is symmetric or not
+	 * @return boolean true if symmetric else false
+	 */
 	public boolean isSymmetricMatrix() {
-		SparceMatrices transposeMatrix = transposeOfMatrix();
+		ArrayList<DieCase> transposeMatrix = transposeOfMatrix();
 		boolean haveImage[] = new boolean[matrix.size()];
 		for (int i = 0; i < matrix.size(); i++) {
-			for (int j = 0; j < transposeMatrix.matrix.size(); j++) {
-				if(matrix.get(i).row == transposeMatrix.matrix.get(j).row &&
-						matrix.get(i).column == transposeMatrix.matrix.get(j).column &&
-						matrix.get(i).data == transposeMatrix.matrix.get(j).data) {
+			for (int j = 0; j < transposeMatrix.size(); j++) {
+				if(matrix.get(i).row == transposeMatrix.get(j).row &&
+						matrix.get(i).column == transposeMatrix.get(j).column &&
+						matrix.get(i).data == transposeMatrix.get(j).data) {
 					haveImage[i] = true;
 				}
 			}
@@ -80,6 +103,11 @@ public final class SparceMatrices {
 		return true;
 	}
 	
+	/**
+	 * add two matrices
+	 * @param matrix2 ArrayList containing nonzero elements of matrix
+	 * @return the resultant added matrix 
+	 */
 	public SparceMatrices addTwoMatrix(ArrayList<DieCase> matrix2) {
 		SparceMatrices addResult;
 		ArrayList<DieCase> result = new ArrayList<>();
@@ -125,6 +153,14 @@ public final class SparceMatrices {
 		return addResult;		
 	}
 
+	/**
+	 * to multiply two matrices
+	 * @param matrix2 ArrayList containing nonzero elements of matrix
+	 * @param rowsA number of rows in matrix1
+	 * @param colsA number of columns in matrix1 
+	 * @param colsB number of columns in matrix2
+	 * @return the resultant of multiplication
+	 */
 	public SparceMatrices multiplyMatrix(ArrayList<DieCase> matrix2, int rowsA, int colsA, int colsB) {
 		//Result matrix elements
 		ArrayList<DieCase> result = new ArrayList<>();

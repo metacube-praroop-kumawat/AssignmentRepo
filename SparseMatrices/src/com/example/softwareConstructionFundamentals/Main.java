@@ -12,7 +12,6 @@ public class Main {
 		ArrayList<DieCase> matrix1 = new ArrayList<>();
 		matrix1.add(new DieCase(0,0,1));
 		matrix1.add(new DieCase(0,1,2));
-		
 		matrix1.add(new DieCase(1,1,3));
 		matrix1.add(new DieCase(2,2,4));
 		SparceMatrices sm1 = new SparceMatrices(matrix1);
