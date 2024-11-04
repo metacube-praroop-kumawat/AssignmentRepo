@@ -25,7 +25,7 @@ public final class SparceMatrices {
 		return this.matrix;	
 	}
 	
-	public void printMatrix() {
+	public void printMatrix(ArrayList<DieCase> matrix) {
 		int maxRowIndex = 0;
 		int maxColumnIndex = 0;
 		//obtaining possible dimensions of matrix
@@ -51,22 +51,29 @@ public final class SparceMatrices {
 		matrix.add(dieCase);
 	}
 	
-	public SparceMatrices transposeOfMatrix(ArrayList<DieCase> matrix) {
+	public SparceMatrices transposeOfMatrix() {
+		ArrayList<DieCase> transposeMatrix = new ArrayList<>();
 		for (int i = 0; i < matrix.size(); i++) {
-			int temp = matrix.get(i).column;
-			matrix.get(i).column = matrix.get(i).row;
-			matrix.get(i).row = temp;
+			 transposeMatrix.add(new DieCase(matrix.get(i).column,matrix.get(i).row,matrix.get(i).data)) ;
 		}
-		SparceMatrices transposeMatrix = new SparceMatrices(matrix);
-		return transposeMatrix;
+		SparceMatrices result = new SparceMatrices(transposeMatrix);
+		return result;
 	}
 	
 	public boolean isSymmetricMatrix() {
-		SparceMatrices transposeMatrix = transposeOfMatrix(matrix);
+		SparceMatrices transposeMatrix = transposeOfMatrix();
+		boolean haveImage[] = new boolean[matrix.size()];
 		for (int i = 0; i < matrix.size(); i++) {
-			if (matrix.get(i).column != transposeMatrix.matrix.get(i).column ||
-				matrix.get(i).row != transposeMatrix.matrix.get(i).row ||
-				matrix.get(i).data != transposeMatrix.matrix.get(i).data) {
+			for (int j = 0; j < transposeMatrix.matrix.size(); j++) {
+				if(matrix.get(i).row == transposeMatrix.matrix.get(j).row &&
+						matrix.get(i).column == transposeMatrix.matrix.get(j).column &&
+						matrix.get(i).data == transposeMatrix.matrix.get(j).data) {
+					haveImage[i] = true;
+				}
+			}
+		}
+		for(int i = 0; i < haveImage.length; i++) {
+			if(haveImage[i] == false) {
 				return false;
 			}
 		}

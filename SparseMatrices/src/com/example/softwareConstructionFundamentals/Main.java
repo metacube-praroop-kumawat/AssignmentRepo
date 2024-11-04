@@ -12,10 +12,11 @@ public class Main {
 		ArrayList<DieCase> matrix1 = new ArrayList<>();
 		matrix1.add(new DieCase(0,0,1));
 		matrix1.add(new DieCase(0,1,2));
+		
 		matrix1.add(new DieCase(1,1,3));
 		matrix1.add(new DieCase(2,2,4));
 		SparceMatrices sm1 = new SparceMatrices(matrix1);
-		sm1.printMatrix();
+		sm1.printMatrix(sm1.getMatrix());
 		System.out.println();
 		ArrayList<DieCase> matrix2 = new ArrayList<>();
 		matrix2.add(new DieCase(0,0,5));
@@ -23,16 +24,12 @@ public class Main {
 		matrix2.add(new DieCase(1,2,7));
 		matrix2.add(new DieCase(2,2,8));
 		SparceMatrices sm2 = new SparceMatrices(matrix2);
-		sm2.printMatrix();
+		sm2.printMatrix(sm2.getMatrix());
 		System.out.println();
 		
-		SparceMatrices result = sm2.multiplyMatrix(sm1.getMatrix(), 3,3,3);
-		
-		for (DieCase elem : result.getMatrix()) {
-			System.out.println("Row" + elem.row + "Col" + elem.column + "Value " + elem.data);
-		}
-		
-		result.printMatrix();
+		boolean result = sm1.isSymmetricMatrix();
+		System.out.print(result);
+//		result.printMatrix(result.getMatrix());
 		
 		
 //		boolean condition = true;
