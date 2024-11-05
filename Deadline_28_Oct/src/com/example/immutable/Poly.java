@@ -16,7 +16,6 @@ public final class Poly {
 	private final Integer[][] polynomial;
 	
 	public Poly(Integer[][] polynomial) {
-		Arrays.sort(polynomial, Comparator.comparingDouble(o -> o[0]));
 		this.polynomial  = new Integer[polynomial.length][2];
 		//polynomial[][0] -> degree
 		//polynomial[][1] -> coefficient 
@@ -34,6 +33,7 @@ public final class Poly {
 	 * @return string in polynomial expression form
 	 */
 	public String printPolynomial() {
+		Arrays.sort(polynomial, Comparator.comparingDouble(o -> o[0]));
 		StringBuilder sb = new StringBuilder("");
 		for (int i = polynomial.length-1; i >=0; i--) {
 			//degree is 0 than only coefficient is printed
@@ -87,14 +87,14 @@ public final class Poly {
 	 * @param polynomial1 another Poly object
 	 * @return a new Poly object resulted by addition
 	 */
-	public Poly addPolynomial(Poly polynomial1) {
+	public static Poly addPolynomial(Poly polynomial1, Poly polynomial2) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		//storing degree and coefficient pair in HashMap for polynomial
-		for (int i = 0; i < polynomial.length; i++) {
-			if (map.containsKey(polynomial[i][0])) {
-				map.put(polynomial[i][0], map.get(polynomial[i][0])+polynomial[i][1]);
+		for (int i = 0; i < polynomial2.polynomial.length; i++) {
+			if (map.containsKey(polynomial2.polynomial[i][0])) {
+				map.put(polynomial2.polynomial[i][0], map.get(polynomial2.polynomial[i][0])+polynomial2.polynomial[i][1]);
 			} else {
-				map.put(polynomial[i][0], polynomial[i][1]);
+				map.put(polynomial2.polynomial[i][0], polynomial2.polynomial[i][1]);
 			}
 		}
 		//storing degree and coefficient pair in HashMap for polynomial1
@@ -121,16 +121,16 @@ public final class Poly {
 	 * @param polynomial2 another Poly object with which we want multiplication
 	 * @return a new Poly object resulted by multiplication
 	 */
-	public Poly multiplyPoly(Poly polynomial2) {
+	public static Poly multiplyPoly(Poly polynomial1, Poly polynomial2) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		//storing degree and coefficient pair in HashMap
-		for (int i = 0; i < polynomial.length; i++) {
+		for (int i = 0; i < polynomial1.polynomial.length; i++) {
 			for (int j = 0; j < polynomial2.polynomial.length; j++) {
-				if (map.containsKey(polynomial[i][0]+polynomial2.polynomial[j][0])) {
-					map.put(polynomial[i][0]+polynomial2.polynomial[j][0], 
-					map.get(polynomial[i][0]+polynomial2.polynomial[j][0])+ polynomial[i][1]*polynomial2.polynomial[j][1]);
+				if (map.containsKey(polynomial1.polynomial[i][0]+polynomial2.polynomial[j][0])) {
+					map.put(polynomial1.polynomial[i][0]+polynomial2.polynomial[j][0], 
+					map.get(polynomial1.polynomial[i][0]+polynomial2.polynomial[j][0])+ polynomial1.polynomial[i][1]*polynomial2.polynomial[j][1]);
 				} else {
-					map.put(polynomial[i][0]+polynomial2.polynomial[j][0], polynomial[i][1]*polynomial2.polynomial[j][1]);
+					map.put(polynomial1.polynomial[i][0]+polynomial2.polynomial[j][0], polynomial1.polynomial[i][1]*polynomial2.polynomial[j][1]);
 				}
 			}
 		}
