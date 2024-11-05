@@ -78,8 +78,12 @@ public final class Poly {
 	 * @return Integer the highest degree
 	 */
 	public Integer degree() {
-		//last index in array stores the highest degree
-		return polynomial[polynomial.length-1][0];
+		Integer degree = Integer.MIN_VALUE;
+		//loop for highest degree in array
+		for (int i = 0; i < polynomial.length; i++) {
+			degree = degree > polynomial[i][0] ? degree : polynomial[i][0];
+		}
+		return degree;
 	}
 	
 	/**
@@ -121,7 +125,7 @@ public final class Poly {
 	 * @param polynomial2 another Poly object with which we want multiplication
 	 * @return a new Poly object resulted by multiplication
 	 */
-	public static Poly multiplyPoly(Poly polynomial1, Poly polynomial2) {
+	public static Poly multiplyPolynomial(Poly polynomial1, Poly polynomial2) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		//storing degree and coefficient pair in HashMap
 		for (int i = 0; i < polynomial1.polynomial.length; i++) {

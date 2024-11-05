@@ -16,7 +16,7 @@ public class main {
 		Poly polynomial1 = new Poly(array1);
 		Integer array2[][] = {{4,1},{3,1},{2,1},{1,1},{0,1},{5,3}};
 		Poly polynomial2 = new Poly(array2);
-		Poly polynomial3 = multiplyPolynomial(polynomial1, polynomial2);
+		Poly polynomial3 = Poly.addPolynomial(polynomial1, polynomial2);
 		System.out.println("The resultant polynomial from the addition of two polynomial " + '\n' + polynomial1.printPolynomial() +
 				" and " + '\n' + polynomial2.printPolynomial() + " is :- " + '\n' + polynomial3.printPolynomial());
 	}
