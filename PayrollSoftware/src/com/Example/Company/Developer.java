@@ -1,24 +1,30 @@
 /*******************************************************************************************************
-* @classname: Employee
+* @classname: Developer
 * @author: Praroop
 * Modification Log:
 ********************************************************************************************************
-* Praroop Kumawat        2024/11/05         defining abstract methods for Employee
+* Praroop Kumawat        2024/11/05         extending Employee class for Developer position
 ********************************************************************************************************/
-
 package com.Example.Company;
 
-public abstract class Employee {
-	int id;
-	public Employee(int id) {
-		this.id = id;
-	}
-	
-	abstract int getbasicSalaray();
-	abstract int getBonus();
-	abstract int getCompenstaion();
+public class Developer extends Employee {
 
-	public int getId() {
-		return id;
+	public Developer(int id) {
+		super(id);
+	}
+
+	@Override
+	int getbasicSalaray() {
+		return 40000;
+	}
+
+	@Override
+	int getBonus() {
+		return 5000;
+	}
+
+	@Override
+	int getCompenstaion() {
+		return 45000;
 	}
 }
