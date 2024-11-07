@@ -1,16 +1,25 @@
 package com.example.Shapes;
 
+import java.util.List;
+
 public class Square implements Shape {
-	public int getArea(int side) {
+	@Override
+	public float getArea(List<Float> list) {
+		float side = list.get(0);
 		return side*side;
 	}
-	public int getPerimeter(int side) {
-		return 4*side;
+	@Override
+	public float getPerimeter(List<Float> list) {
+		float side = list.get(0);
+		return (float)(4*side);
 	}
-	public String getOrigin(int side) {
+	@Override
+	public String getOrigin() {
 		return "0,0";
 	}
-	public boolean isPointEnclosed(int side, Point point) {
+	@Override
+	public boolean isPointEnclosed(List<Float> list, Point point) {
+		float side = list.get(0);
 		if (point.x < side && point.y < side) {
 			return true;
 		}
