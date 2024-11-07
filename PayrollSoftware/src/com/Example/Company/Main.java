@@ -20,16 +20,19 @@ public class Main {
 		org.addDepartment(SoftwareEngineer);
 		Department HR = new Department("HR");
 		org.addDepartment(HR);
-		for (int i = 0; i < org.departmentList.size(); i++) {
-			System.out.println(org.departmentList.get(i).departmentName);
-		}
+//		for (int i = 0; i < org.departmentList.size(); i++) {
+//			System.out.println(org.departmentList.get(i).departmentName);
+//		}
 		Employee e =  new Developer(0);
 		Employee e1 = new ProjectLead(10);
 		HR.join(e);
 		SoftwareEngineer.join(e1);
 		List<Employee> newl = org.getEmployees();
-		System.out.print(newl.size());
+//		System.out.print(newl.size());
 		Payroll payroll = new Payroll();
-		payroll.calculateTax(e, HR);
+		payroll.salarySlip(newl);
+		for (int i = 0; i < newl.size(); i++) {
+			newl.get(i);
+		}
 	}
 }

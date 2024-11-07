@@ -41,7 +41,7 @@ public class Organization {
 		for (int i = 0; i < this.departmentList.size(); i++) {
 			//composition
 			departmentByComposition = departmentList.get(i);
-			totalEmployees= departmentByComposition.getAllEmployees();
+			totalEmployees.addAll(departmentByComposition.getAllEmployees());
 			
 		}
 		return totalEmployees;
