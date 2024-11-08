@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Organization {
+	String name;
+		public Organization(String name) {
+			this.name = name;
+		}
 	//List of departments exists in organization
 	List<Department> departmentList = new ArrayList<>();
 	//composition
@@ -36,12 +40,12 @@ public class Organization {
 	 * function to get all employees present in organization
 	 * @return List of all employees
 	 */
-	public List<Employee> getEmployees(){
+	public List<Employee> getAllEmployees(){
 		List<Employee> totalEmployees = new ArrayList<>(); 
 		for (int i = 0; i < this.departmentList.size(); i++) {
 			//composition
 			departmentByComposition = departmentList.get(i);
-			totalEmployees.addAll(departmentByComposition.getAllEmployees());
+			totalEmployees.addAll(departmentByComposition.getEmployees());
 			
 		}
 		return totalEmployees;

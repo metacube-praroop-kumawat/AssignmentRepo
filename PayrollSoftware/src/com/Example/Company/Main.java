@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Organization org = new Organization();
+		Organization org = new Organization("MetaCube");
 		Scanner sc = new Scanner(System.in);
 		Department SoftwareEngineer = new Department("Software Engineer");
 		org.addDepartment(SoftwareEngineer);
@@ -27,10 +27,10 @@ public class Main {
 		Employee e1 = new ProjectLead(10);
 		HR.join(e);
 		SoftwareEngineer.join(e1);
-		List<Employee> newl = org.getEmployees();
+		List<Employee> newl = org.getAllEmployees();
 //		System.out.print(newl.size());
 		Payroll payroll = new Payroll();
-		payroll.salarySlip(newl);
+		payroll.salarySlip(org);
 		for (int i = 0; i < newl.size(); i++) {
 			newl.get(i);
 		}

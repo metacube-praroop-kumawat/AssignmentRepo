@@ -14,8 +14,9 @@ import java.util.ArrayList;
 public class Payroll {
 	
 	private static float taxRate = 0.18f;
-	public List<Float> salarySlip(List<Employee> employeeList) {
+	public List<Float> salarySlip(Organization organization) {
 		int tax = 0;
+		List<Employee> employeeList = organization.getAllEmployees();
 		List<Float> taxList = new ArrayList<>();
 		for (Employee employee : employeeList) {
 			tax = (int) ((employee.getCompenstaion()*12)*taxRate);

@@ -15,8 +15,7 @@ import java.util.HashMap;
 public class Department {
 	String departmentName;
 	//List of employees present in current department
-	List<Employee> departmentNameemployeeList = new ArrayList<>();
-	HashMap<Integer, Employee> employeeData = new HashMap<>();
+	List<Employee> departmentNameEmployeeList = new ArrayList<>();
 	
 	public Department(String name) {
 		departmentName = name;
@@ -28,9 +27,8 @@ public class Department {
 	 * @return true if employee id not already present and added successfully
 	 */
 	public boolean join(Employee employee) {
-		if(!departmentNameemployeeList.contains(employee)) {
-			departmentNameemployeeList.add(employee);
-			employeeData.put(employee.id, employee);
+		if(!departmentNameEmployeeList.contains(employee)) {
+			departmentNameEmployeeList.add(employee);
 			return true;
 		}
 		return false;
@@ -42,9 +40,8 @@ public class Department {
 	 * @return true if employee is removed successfully
 	 */
 	public boolean relieve(Employee employee) {
-		if(departmentNameemployeeList.contains(employee)) {
-			departmentNameemployeeList.remove(employee);
-			employeeData.remove(employee.id);
+		if(departmentNameEmployeeList.contains(employee)) {
+			departmentNameEmployeeList.remove(employee);
 			return true;
 		}
 		return false;
@@ -54,7 +51,7 @@ public class Department {
 	 * function to give all employees present in department
 	 * @return List of employees 
 	 */
-	public List<Employee> getAllEmployees(){
-		return departmentNameemployeeList;
+	public List<Employee> getEmployees(){
+		return departmentNameEmployeeList;
 	}
 }
