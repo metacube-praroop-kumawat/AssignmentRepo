@@ -14,13 +14,15 @@ public class Square implements Shape {
 		return (float)(4*side);
 	}
 	@Override
-	public String getOrigin() {
-		return "0,0";
+	public Point getOrigin(List<Float> list,Point point) {
+		return point;
 	}
+	
 	@Override
-	public boolean isPointEnclosed(List<Float> list, Point point) {
+	public boolean isPointEnclosed(List<Float> list, Point point, Point test) {
+		Point origin =  getOrigin(list, point);
 		float side = list.get(0);
-		if (point.x < side && point.y < side) {
+		if (test.x < side + origin.x && test.y < side + origin.y && test.x > origin.x && test.y > origin.y ) {
 			return true;
 		}
 		return false;

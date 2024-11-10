@@ -20,12 +20,12 @@ public class Polygon implements Shape {
 	}
 	
 	@Override
-	public String getOrigin() {
-		return "0,0";
+	public Point getOrigin(List<Float> list, Point point) {
+		return point;
 	}
 	
 	@Override
-	public boolean isPointEnclosed(List<Float> list, Point point) {
+	public boolean isPointEnclosed(List<Float> list, Point point, Point test) {
 		
 		if (point.x < 10 && point.y < 10) {
 			return true;

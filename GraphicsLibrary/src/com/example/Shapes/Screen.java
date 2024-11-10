@@ -1,9 +1,18 @@
+/*******************************************************************************************************
+* @classname: Screen
+* @author: Praroop
+* Modification Log:
+********************************************************************************************************
+* Praroop Kumawat        2024/11/06         Making functions to perform on Screen
+********************************************************************************************************/
+
 package com.example.Shapes;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Screen {
 	int XMAX;
@@ -18,7 +27,13 @@ public class Screen {
 		this.XMAX = xMax;
 		this.YMAX = yMax;
 	}
-
+	
+	/**
+	* add shapes adds a new shape to screen
+	* @param shapeType is a type of shape user wants to add
+	* @param point is the starting point of shape
+	* @param list of all the dimensions of shape
+	*/
 	public void addShape(Shape.ShapeType shapeType, Point point, List<Float> list) {
 		ShapeFactory shapeFactory = new ShapeFactory();
 		Shape shape = shapeFactory.createShape(shapeType, point, list);
@@ -29,6 +44,11 @@ public class Screen {
 		System.out.println("Shape "+ shapeType + " added successfully");
 	}
 	
+	/**
+	 * delete a individual particular shape from screen
+	 * @param shapeType is a type of shape user wants to delete
+	 * @param point is the starting point of shape
+	 */
 	public void deleteShape(Shape.ShapeType shapeType, Point point) {
 		for(String str : shapesOnScreen.keySet()) {
 			if((str.charAt(1) - 48) == point.x && (str.charAt(3) - 48) == point.y) { //converting characters to int value by ASCII
@@ -39,6 +59,10 @@ public class Screen {
 		}
 	}
 	
+	/**
+	 * deletes all the shapes of a particular type
+	 * @param shapeType is a type of shape user wants to delete
+	 */
 	public void deleteAllShapesOfSpecificType(Shape.ShapeType shapeType) {
 		int count = 0;
 		Map<String, Shape> copyList = new HashMap<>(shapesOnScreen);  
@@ -57,6 +81,11 @@ public class Screen {
 			System.out.println("No shape of " + shapeType + " is present.");
 		}
 	}
+	
+	/**
+	 * Sorts the shape present on screen in a ascending order on particular basis
+	 * @param str String the particular basis on which shapes are sorted
+	 */
 	public void sortingByOrder(String str) {
 		System.out.println("Sorting on the basis of " + str + ":-");
 		if (str == "Area") {
@@ -86,11 +115,41 @@ public class Screen {
 				System.out.println(mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
 			}
 		} else if (str == "Time Stamp") {
+			int array[] = new int[shapesOnScreen.size()];
+			Map<Integer, Shape> mapForPrintSorting = new HashMap<>();
+			int i = 0;
+			for (String time : shapesOnScreen.keySet()) {
+				array[i] = (int)time.charAt(6)-48;
+				mapForPrintSorting.put(array[i], shapesOnScreen.get(time));
+				i++;
+			}
+			Arrays.sort(array);
+			for (int value : array) {
+				System.out.println(mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+			}
 			
 		}
 		
 		
 	}
 	
-	
+	/**
+	 * is the point lies inside the shapes on screen
+	 * @param test Point which lies inside shape 
+	 */
+	public void enclosingThePoint(Point test) {
+		if (test.x > XMAX || test.y > YMAX) {
+			throw new IllegalArgumentException("point is out of screen");
+		}
+		List<Shape> shapesEnclosingThePoint = new ArrayList<>();
+ 		for (String str : shapesOnScreen.keySet()) {
+ 			Point point = new Point(str.charAt(1)-48.0, str.charAt(3)-48.0);
+			if (shapesOnScreen.get(str).isPointEnclosed(dimensions.get(shapesOnScreen.get(str)), point, test)) {
+				shapesEnclosingThePoint.add(shapesOnScreen.get(str));
+			}
+		}
+ 		for (Shape i : shapesEnclosingThePoint) {
+ 			System.out.print(i.getClass().getSimpleName() + " ");
+ 		}
+	}
 }

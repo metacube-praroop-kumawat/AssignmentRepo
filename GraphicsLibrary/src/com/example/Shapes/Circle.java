@@ -16,15 +16,20 @@ public class Circle implements Shape {
 	}
 	
 	@Override
-	public String getOrigin() {
-		return "0,0";
+	public Point getOrigin(List<Float> list, Point point) {
+		float radius = list.get(0);
+		double a =  point.x - radius*Math.sin(Math.atan(point.y/point.x));
+		double b =  point.y - radius*Math.sin(Math.atan(point.y/point.x));
+		Point centre = new Point(a, b);
+		return centre;
 	}
 	
 	@Override
-	public boolean isPointEnclosed(List<Float> list, Point point) {
+	public boolean isPointEnclosed(List<Float> list, Point point, Point test) {
 		float radius = list.get(0);
-		float distanceOfPointFromOrigin = (float) Math.sqrt((point.x - 0)*(point.x - 0) + (point.y - 0)*(point.y - 0));
-		if (distanceOfPointFromOrigin < 2*3.14*radius) {
+		int lhs = (int) ((test.x-point.x)*(test.x-point.x) + (test.y-point.y)*(test.y-point.y));		
+		int rhs = (int) ((int)radius*radius);
+		if(lhs <= rhs) {
 			return true;
 		}
 		return false;

@@ -24,13 +24,12 @@ public class Triangle implements Shape{
 	}
 
 	@Override
-	public String getOrigin() {
-		
-		return null;
+	public Point getOrigin(List<Float> list, Point point) {
+		return point;
 	}
 
 	@Override
-	public boolean isPointEnclosed(List<Float> list, Point point) {
+	public boolean isPointEnclosed(List<Float> list, Point point, Point test) {
 		
 		return false;
 	}
