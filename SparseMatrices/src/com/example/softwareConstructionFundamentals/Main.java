@@ -28,24 +28,5 @@ public class Main {
 		SparceMatrices result = sm1.addTwoMatrix(matrix2);
 		result.printMatrix(result.getMatrix());
 		
-//		result.printMatrix(result.getMatrix());
-		
-		
-//		boolean condition = true;
-//		while (condition ) {
-//			System.out.print("Enter the row, column and value you want to enter :" + '\n');
-//			int row = sc.nextInt();
-//			int column = sc.nextInt();
-//			int value = sc.nextInt();
-//			DieCase dieCase = new DieCase(row, column, value);
-//			matrix.addDieCase(dieCase);
-//			System.out.print("Do you want to continue ? Y/N : ");
-//			char yesNo = sc.next().charAt(0);
-//			System.out.println();
-//			if(yesNo == 'N' || yesNo == 'n') {
-//				condition = false;
-//			}
-//		}
-//		matrix.transposeOfMatrix();
 	}
 }

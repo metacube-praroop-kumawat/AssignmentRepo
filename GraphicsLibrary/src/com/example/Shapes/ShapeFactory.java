@@ -21,15 +21,15 @@ public class ShapeFactory {
 	public Shape createShape(Shape.ShapeType shapeType, Point point, List<Float> list) {
 		Shape shape = null;
 		if (shapeType == Shape.ShapeType.CIRCLE) {
-			shape = new Circle();
+			shape = new Circle(list, point);
 		} else if (shapeType == Shape.ShapeType.TRIANGLE) {
-			shape = new Triangle();
+			shape = new Triangle(list, point);
 		} else if (shapeType == Shape.ShapeType.SQUARE) {
-			shape = new Square();
+			shape = new Square(list, point);
 		} else if (shapeType == Shape.ShapeType.RECTANGLE) {
-			shape = new Rectangle();
+			shape = new Rectangle(list, point);
 		} else if (shapeType == Shape.ShapeType.POLYGON) {
-			shape = new Polygon();
+			shape = new Polygon(list, point);
 		}
 		return shape;
 	}

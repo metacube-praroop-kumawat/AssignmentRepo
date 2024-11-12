@@ -20,8 +20,6 @@ public class Screen {
 	static int timeStamp = 0;
 	Map<String, Shape> shapesOnScreen = new HashMap<>();
 //	String = (x,y),t
-	Map<Shape, List<Float>> dimensions = new HashMap<>();
-	
 	
 	public Screen(int xMax, int yMax) {
 		this.XMAX = xMax;
@@ -40,7 +38,6 @@ public class Screen {
 		timeStamp++;
 		String str = new String("(" + point.x + "," + point.y + ")" + "," + timeStamp) ;
 		shapesOnScreen.put(str, shape);	
-		dimensions.put(shape, list);
 		System.out.println("Shape "+ shapeType + " added successfully");
 	}
 	
@@ -52,7 +49,6 @@ public class Screen {
 	public void deleteShape(Shape.ShapeType shapeType, Point point) {
 		for(String str : shapesOnScreen.keySet()) {
 			if((str.charAt(1) - 48) == point.x && (str.charAt(3) - 48) == point.y) { //converting characters to int value by ASCII
-				dimensions.remove(shapesOnScreen.get(str));
 				shapesOnScreen.remove(str);
 				System.out.println("The shape at point " + point.x + "," + point.y + " is removed successfully");
 			}
@@ -70,7 +66,6 @@ public class Screen {
 		for (String str : copyList.keySet()) {
 //			(shapesOnScreen.get(str).getClass().getSimpleName().toUpperCase());
 			if ((shapesOnScreen.get(str)).getClass().getSimpleName().toUpperCase().equals(shapeType.name())) {
-				dimensions.remove(shapesOnScreen.get(str));
 				shapesOnScreen.remove(str);
 				count++;
 			}
@@ -92,27 +87,27 @@ public class Screen {
 			float array[] = new float[shapesOnScreen.size()];
 			Map<Float, Shape> mapForPrintSorting = new HashMap<>();
 			int i = 0;
-			for (Shape shape : dimensions.keySet()) {
-				array[i] = shape.getArea(dimensions.get(shape));
-				mapForPrintSorting.put(array[i], shape);
+			for (String rowColTime : shapesOnScreen.keySet()) {
+				array[i] = shapesOnScreen.get(rowColTime).getArea();
+				mapForPrintSorting.put(array[i], shapesOnScreen.get(rowColTime));
 				i++;
 			}
 			Arrays.sort(array);
 			for (Float value : array) {
-				System.out.println(mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+				System.out.println(value + ", "+ mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
 			}
 		} else if (str == "Perimeter") {
 			float array[] = new float[shapesOnScreen.size()];
 			Map<Float, Shape> mapForPrintSorting = new HashMap<>();
 			int i = 0;
-			for (Shape shape : dimensions.keySet()) {
-				array[i] = shape.getPerimeter(dimensions.get(shape));
-				mapForPrintSorting.put(array[i], shape);
+			for (String str1 : this.shapesOnScreen.keySet()) {
+				array[i] = this.shapesOnScreen.get(str1).getPerimeter();
+				mapForPrintSorting.put(array[i], this.shapesOnScreen.get(str1));
 				i++;
 			}
 			Arrays.sort(array);
 			for (Float value : array) {
-				System.out.println(mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+				System.out.println(value + ", "+ mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
 			}
 		} else if (str == "Time Stamp") {
 			int array[] = new int[shapesOnScreen.size()];
@@ -125,9 +120,22 @@ public class Screen {
 			}
 			Arrays.sort(array);
 			for (int value : array) {
-				System.out.println(mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+				System.out.println(value + ", "+ mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+			}			
+		} else if (str == "Origin Distance") {
+			Double array[] = new Double[shapesOnScreen.size()];
+			Map<Double, Shape> mapForPrintSorting = new HashMap<>();
+			int i = 0;
+			for (String str1 : this.shapesOnScreen.keySet()) {
+				Point origin = this.shapesOnScreen.get(str1).getOrigin();
+				array[i] = Math.sqrt((origin.x*origin.x) + (origin.y*origin.y));
+				mapForPrintSorting.put(array[i], shapesOnScreen.get(str1));
+				i++;
 			}
-			
+			Arrays.sort(array);
+			for (Double value : array) {
+				System.out.println(value + ", "+ mapForPrintSorting.get(value).getClass().getSimpleName().toUpperCase());
+			}
 		}
 		
 		
@@ -142,9 +150,9 @@ public class Screen {
 			throw new IllegalArgumentException("point is out of screen");
 		}
 		List<Shape> shapesEnclosingThePoint = new ArrayList<>();
- 		for (String str : shapesOnScreen.keySet()) {
+ 		for (String str : this.shapesOnScreen.keySet()) {
  			Point point = new Point(str.charAt(1)-48.0, str.charAt(3)-48.0);
-			if (shapesOnScreen.get(str).isPointEnclosed(dimensions.get(shapesOnScreen.get(str)), point, test)) {
+			if (shapesOnScreen.get(str).isPointEnclosed(test)) {
 				shapesEnclosingThePoint.add(shapesOnScreen.get(str));
 			}
 		}

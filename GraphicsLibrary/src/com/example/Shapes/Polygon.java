@@ -3,33 +3,38 @@ package com.example.Shapes;
 import java.util.List;
 
 public class Polygon implements Shape {
+	List<Float> list;
+	Point point;
+	
+	public Polygon(List<Float> list, Point point){
+		this.list = list;
+		this.point = point;
+	}
 	
 	@Override
-	public float getArea(List<Float> list) {
-		int numberOfSides = list.size();
-		float sideLength = list.get(0);
+	public float getArea() {
+		int numberOfSides = this.list.size();
+		float sideLength = this.list.get(0);
 		float apothem = (float) ((numberOfSides*numberOfSides)*Math.tan(22/(7*numberOfSides)));
 		return (float)((1/2)*apothem*numberOfSides*sideLength);
 	}
 	
 	@Override
-	public float getPerimeter(List<Float> list) {
-		int numberOfSides = list.size();
-		float sideLength = list.get(0);
+	public float getPerimeter() {
+		int numberOfSides = this.list.size();
+		float sideLength = this.list.get(0);
 		return (float)(numberOfSides*sideLength);
 	}
 	
 	@Override
-	public Point getOrigin(List<Float> list, Point point) {
+	public Point getOrigin() {
 		return point;
 	}
 	
 	@Override
-	public boolean isPointEnclosed(List<Float> list, Point point, Point test) {
+	public boolean isPointEnclosed(Point test) {
 		
-		if (point.x < 10 && point.y < 10) {
-			return true;
-		}
+		
 		return false;
 	}
 }

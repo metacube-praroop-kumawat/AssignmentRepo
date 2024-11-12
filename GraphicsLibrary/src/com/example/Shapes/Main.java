@@ -24,7 +24,6 @@ public class Main {
 //		for (String str : screen1.shapesOnScreen.keySet()) {
 //			System.out.println(str + " , "+  screen1.shapesOnScreen.get(str));
 //		}
-		Point test = new Point(0.5, 0.5);
-		screen1.enclosingThePoint(test);
+		 screen1.sortingByOrder("Perimeter");
 	}
 }
