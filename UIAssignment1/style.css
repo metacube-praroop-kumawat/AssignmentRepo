@@ -1,3 +1,104 @@
 html{
     scroll-behavior: smooth;
 }
+.nav-wrapper{
+    position: fixed;
+    min-height: 46px;
+    Background-color: lightgrey;
+    left: 0;
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.navBarElem{
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+
+.navBarElem :hover{
+    transition: 1s;
+    color: black;
+    background-color: darkgray;
+}
+
+.navBarElem > a{
+    padding: 5px 10px;
+}
+
+/* Main content */
+.main {
+    margin-top: 60px; /* Add a top margin to avoid content overlay */
+}
+
+.main > img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-radius: 25px;
+    border: blue;
+}
+.main img:hover{
+    transition: 3s;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    
+}
+
+.addEmployee{
+    text-align: center;
+    display: inline;
+    
+}
+
+#addEmployee{
+    border-radius:25px;
+    padding: 20px;
+    margin: 20px;
+    
+}
+
+#addEmployee:hover{
+    transition: 2s;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+}
+
+.addVehicleIntoParking{
+    text-align: center;
+}
+
+.giveFeedback{
+    text-align: center;  
+}
+
+.feedback{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.parkingPricingWrapper{
+    text-align: center;
+}
+
+.parkingPricing{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.parkingPricing div{
+    border-style: solid;
+    background-color: #b9bdc4;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.parkingPricing div:hover{
+    transition: 2s;
+    box-shadow: 5px 5px 5cap 5px #55585c;
+}

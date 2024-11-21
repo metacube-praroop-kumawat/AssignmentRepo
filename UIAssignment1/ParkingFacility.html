@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Welcome To MetaCube Parking portal</h2>
-    <header style="background-color: grey; position: fixed; min-width: 100vw;">
+    <header class="nav-wrapper">
         <section>
-            <nav >
-                <div>
+            <nav class="navBar">
+                <div class="navBarElem">
+                    <a href="ParkingFacility.html">Home</a> 
                     <a href = "#addEmployee">Add Employee</a>
                     <a href = "#addVehicleIntoParking">Add Vehicle</a>
                     <a href = "#giveFeedback">Give Feedback</a>
@@ -20,15 +20,16 @@
             </nav>
         </section>
     </header>
-    <main style="margin-top: 10px;">
-        <img src = "C:\Users\Praroop\Desktop\Web_DEv\UI Assignment1\Project Images\addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
-        <section>
+    <main class="main">
+        <h2>Welcome To MetaCube Parking portal</h2>
+        <img src = "../Project Images/addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
+        <section class="addEmployee">
             <div id="addEmployee">
                 <h3>Add Employee 🧑‍💼</h3>
                 <form action="/action.php" >
                     <div>
                         <label for="username">Enter your username:</label> 
-                        <input type="text" id="username" placeholder="Enter your name" name="name">
+                        <input type="text" id="username" placeholder="name" name="name">
                     </div>
                     <br>
                     <div>
@@ -43,30 +44,27 @@
                     <br>
                     <div>
                         <laber for="email">Enter your email id : </laber>
-                        <input type="email" id="email" placeholder="please enter your email">
+                        <input type="email" id="email" placeholder="abc@mail.com">
                     </div>
                     <br>
                     <div>
                         <label for="pass">Enter your password :   </label>
-                        <input type="password" id="pass" placeholder="enter password here">
+                        <input type="password" id="pass" placeholder="password">
                         <br>
                         <label for="repass">Re-enter your password : </label>
-                        <input type="password" id="repass" placeholder="re-enter password here">
+                        <input type="password" id="repass" placeholder="password again">
                     </div>
                     <br>
                     <div>
                         <label for="contactNo">Enter your Contact number : </label>
-                        <input type="tel" id="contactNo" placeholder="Enter your contact no here">
+                        <input type="tel" id="contactNo" placeholder="contact number">
                     </div>
                     <button type="submit">Register</button>
                 </form>
                 
             </div>
         </section>
-        <br/>
-        <hr/>
-        <br/>
-        <section>
+        <section class="addVehicleIntoParking">
             <div id="addVehicleIntoParking">
                 <h3>Add Vehicle into Parking 🚘</h3>
                 <form action="/action">
@@ -108,71 +106,57 @@
                 </form>
             </div>
         </section>
-        <br/>
-        <hr/>
-        <br/>
-        <section>
-            <div id="giveFeedback">
-                <h3>Give Feedback 📝</h3>
-                <span>
-                    <img src="C:\Users\Praroop\Desktop\Web_DEv\UI Assignment1\Project Images\sendMail.png" alt="send mail">
-                </span>
-                <span>
-                    <h3>Get in touch</h3>
-                    <form>
-                        <div>
-                            <input type="text" placeholder="Name">
-                        </div>
-                        <br/><br/>
-                        <div>
-                            <input type="email" placeholder="Email">
-                        </div>
-                        <br/><br/>
-                        <div>
-                            <input type="text" placeholder="Subject">
-                        </div>
-                        <br/><br/>
-                        <div>
-                            <textarea placeholder="Message"></textarea>
-                        </div>
-                        <br/>
-                        <button type="button">Send Email-></button>
-                    </form>
-                </span>  
-            </div>
+        <section class="giveFeedback">
+            <h3>Give Feedback 📝</h3>
+            <div class="feedback">
+            <span>
+                <img src="../Project Images/sendMail.png" alt="send mail">
+            </span>
+            <span>
+                <h3>Get in touch</h3>
+                <form>
+                    <div>
+                        <input type="text" placeholder="Name">
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <textarea placeholder="Message"></textarea>
+                    </div>
+                    <br/>
+                    <button type="button">Send Email-></button>
+                </form>
+            </span>
+        </div>  
         </section>
-        <br/>
-        <hr/>
-        <br/>
-        <section>
-            <div id="parkingPricing">
-                <h4>Pricing</h4>
-                <table border="black">
-                    <tr>
-                        <td>
-                            <h4>Cycle 🚲</h4>
-                            <p><b>$ 100</b><br/>/ month</p>
-                            <p>$5 daily<br/>$100 monthly<br/>$500 yearly</p>
-                            <button type="button">PURCHASE NOW</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>Motor Cycle 🏍️</h4>
-                            <p><b>$200</b><br>/ month</p>
-                            <p>$10 daily<br/>$200 monthly<br/>$1000 yearly</p>
-                            <button type="button">PURCHASE NOW</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h4>Four Wheeler 🚗</h4>
-                            <p><b>$500</b><br>/ month</p>
-                            <p>$20 daily<br/>$500 monthly<br/>$3500 yearly</p>
-                            <button type="button">PURCHASE NOW</button>
-                        </td>
-                    </tr>
-                </table>
+        <section class="parkingPricingWrapper">
+            <h4>Pricing 💸</h4>
+            <div class="parkingPricing">
+                <div>
+                    <h4>Cycle 🚲</h4>
+                    <p><b>$ 100</b><br/>/ month</p>
+                    <p>$5 daily<br/>$100 monthly<br/>$500 yearly</p>
+                    <button type="button">PURCHASE NOW</button>
+                </div>
+                <div>
+                    <h4>Motor Cycle 🏍️</h4>
+                    <p><b>$200</b><br>/ month</p>
+                    <p>$10 daily<br/>$200 monthly<br/>$1000 yearly</p>
+                    <button type="button">PURCHASE NOW</button>
+                </div>
+                <div>
+                    <h4>Four Wheeler 🚗</h4>
+                    <p><b>$500</b><br>/ month</p>
+                    <p>$20 daily<br/>$500 monthly<br/>$3500 yearly</p>
+                    <button type="button">PURCHASE NOW</button>
+                </div>       
             </div>
         </section>
     </main>
