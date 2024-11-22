@@ -24,14 +24,16 @@
         <h2>Welcome To MetaCube Parking portal</h2>
         <img src = "../Project Images/addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
         <section class="addEmployee">
-            <div id="addEmployee">
-                <h3>Add Employee 🧑‍💼</h3>
+            <details>
+                    <summary>
+                        <div id="addEmployee">
+                        <h3>Add Employee 🧑‍💼</h3>
+                    </summary>
                 <form action="/action.php" >
                     <div>
                         <label for="username">Enter your username:</label> 
                         <input type="text" id="username" placeholder="name" name="name">
                     </div>
-                    <br>
                     <div>
                         <label for="gender">Please select gender : </label>
                         <input type="radio" id="male" name="gender" value="m">
@@ -41,12 +43,10 @@
                         <input type="radio" id="other" name="gender" value="o">
                         <label for="other">other</label>
                     </div>
-                    <br>
                     <div>
                         <laber for="email">Enter your email id : </laber>
                         <input type="email" id="email" placeholder="abc@mail.com">
                     </div>
-                    <br>
                     <div>
                         <label for="pass">Enter your password :   </label>
                         <input type="password" id="pass" placeholder="password">
@@ -54,30 +54,31 @@
                         <label for="repass">Re-enter your password : </label>
                         <input type="password" id="repass" placeholder="password again">
                     </div>
-                    <br>
                     <div>
                         <label for="contactNo">Enter your Contact number : </label>
                         <input type="tel" id="contactNo" placeholder="contact number">
                     </div>
                     <button type="submit">Register</button>
                 </form>
-                
             </div>
+        </details>
         </section>
-        <section class="addVehicleIntoParking">
-            <div id="addVehicleIntoParking">
+        
+        <section class="addVehicleIntoParkingWrapper">
+            <details>
+            <summary class="addVehicleIntoParking">
+            <div >
                 <h3>Add Vehicle into Parking 🚘</h3>
+            </summary>
                 <form action="/action">
                     <div>
                         <label for="vehicleMake">Enter ther company of your vehicle : </label>
                         <input type="text" id="vehicelMake" placeholder="company">
                     </div>
-                    <br />
                     <div>
                         <label for="modelNo">Enter your model : </label>
                         <input type="search" id="modelNo" placeholder="Model number">
                     </div>
-                    <br />
                     <div>
                         <label for="vehicleType">What is the type of your vehicle</label>
                         <select name="vehicleType" id="vehicleType">
@@ -86,17 +87,14 @@
                             <option value="4wheeler">Four wheeler 🚗</option>
                         </select>
                     </div>
-                    <br />
                     <div>
                         <label for="vehicleNum">Enter your vehicle number : </label>
                         <input type="search" id="vehicleNum" placeholder="vehicle number">
                     </div>
-                    <br />
                     <div>
                         <label for="empId">Enter your employee id : </label>
                         <input type="number" id="empId" placeholder="employee id">
                     </div>
-                    <br />
                     <div>
                         <label for="identification">Decribe identification :-</label>
                         <br />
@@ -105,9 +103,13 @@
                     <button type="submit">Submit</button>
                 </form>
             </div>
+        </details>
         </section>
+    
         <section class="giveFeedback">
-            <h3>Give Feedback 📝</h3>
+            <details>
+                <summary><h3>Give Feedback 📝</h3></summary>
+            
             <div class="feedback">
             <span>
                 <img src="../Project Images/sendMail.png" alt="send mail">
@@ -118,46 +120,47 @@
                     <div>
                         <input type="text" placeholder="Name">
                     </div>
-                    <br/><br/>
                     <div>
                         <input type="email" placeholder="Email">
                     </div>
-                    <br/><br/>
                     <div>
                         <input type="text" placeholder="Subject">
                     </div>
-                    <br/><br/>
                     <div>
                         <textarea placeholder="Message"></textarea>
                     </div>
-                    <br/>
                     <button type="button">Send Email-></button>
                 </form>
             </span>
         </div>  
+        </details>
         </section>
         <section class="parkingPricingWrapper">
-            <h4>Pricing 💸</h4>
-            <div class="parkingPricing">
+            <details>
+                 <summary>
+                    <h4>Pricing 💸</h4>
+                </summary>
+                <div class="parkingPricing">
                 <div>
                     <h4>Cycle 🚲</h4>
-                    <p><b>$ 100</b><br/>/ month</p>
+                    <p class="pricePerMonth"><b>$ 100</b><br/>/ month</p>
                     <p>$5 daily<br/>$100 monthly<br/>$500 yearly</p>
                     <button type="button">PURCHASE NOW</button>
                 </div>
                 <div>
                     <h4>Motor Cycle 🏍️</h4>
-                    <p><b>$200</b><br>/ month</p>
+                    <p class="pricePerMonth"><b>$200</b><br>/ month</p>
                     <p>$10 daily<br/>$200 monthly<br/>$1000 yearly</p>
                     <button type="button">PURCHASE NOW</button>
                 </div>
                 <div>
                     <h4>Four Wheeler 🚗</h4>
-                    <p><b>$500</b><br>/ month</p>
+                    <p class="pricePerMonth"><b>$500</b><br>/ month</p>
                     <p>$20 daily<br/>$500 monthly<br/>$3500 yearly</p>
                     <button type="button">PURCHASE NOW</button>
                 </div>       
             </div>
+        </summary>
         </section>
     </main>
 </body>
