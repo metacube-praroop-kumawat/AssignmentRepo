@@ -1,0 +1,11 @@
+.footer-wrapper{
+    display:flex;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.footer-appdownload-img img{
+    /* width: 50%;
+    height: 50%; */
+
+}
