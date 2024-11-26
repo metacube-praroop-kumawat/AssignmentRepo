@@ -1,0 +1,23 @@
+.h3{
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 35px ;
+    font-weight: 700;  
+}
+
+html{
+    background-color: lightgrey;
+}
+.nav{
+    font-weight: 500;
+    color: black;
+}
+.h1{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    font-size: 60px;
+    /* padding-right: 50%; */
+
+}
+.blog-content{
+    padding-right: 50%;
+}
