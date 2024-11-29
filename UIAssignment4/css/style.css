@@ -1,7 +1,5 @@
-.h3{
+h1, h2, h3, h4, h5, h6{
     font-family: 'Times New Roman', Times, serif; 
-    font-size: 35px ;
-    font-weight: 700;  
 }
 
 html{
@@ -11,13 +9,9 @@ html{
     font-weight: 500;
     color: black;
 }
-.h1{
+.featured-blog-heading{
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 900;
-    font-size: 60px;
-    /* padding-right: 50%; */
+    font-weight: 900; 
+    font-size: 60px;     
+}
 
-}
-.blog-content{
-    padding-right: 50%;
-}
