@@ -1,0 +1,238 @@
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-wrapper{
+    position: fixed;
+    min-height: 46px;
+    Background-color: lightgrey;
+    left: 0;
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+.navBarElem{
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navBarElem a{
+    color: black;
+}
+
+.navBarElem :hover{
+    transition: 1s;
+    color: darkblue;
+    border-radius: 25px;
+    background-color: darkgray;
+}
+
+.navBarElem > a{
+    padding: 5px 10px;
+}
+
+/* Main content */
+.main{
+    margin-top: 60px; /* Add a top margin to avoid content overlay */
+}
+
+.main > section{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.main > img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-radius: 25px;
+    border: blue;
+}
+
+.main > img:hover{
+    transition: 3s;
+    box-shadow: 3px 3px 3px 3px lightgrey;   
+}
+
+section h3{
+    color: white;
+}
+
+section{
+    color:white;
+    background-color: darkblue;
+}
+
+details[open] summary h3{
+    color: darkblue;
+    background-color: white;
+ }
+
+details[open]{
+    color: black;
+    background-color: white;
+    border: 2px solid darkblue;
+    border-radius: 20px;
+    width:95%;
+    display:inline-block;
+    align-items:center;
+    margin-left: 25.6px;
+ }
+
+details button{
+    color: white;
+    background-color: darkblue;
+ }
+
+details button:hover{
+    color: darkblue;
+    background-color: lightgrey;
+ }
+
+input{
+    background-color:transparent;
+    border: 2px solid grey ;
+    border-radius: 4px;
+}
+input:focus {
+    outline:none;
+    border-color: darkblue;
+}
+
+label { 
+    width: 300px;
+    font-size: 16px;
+    margin-top:10px;
+}
+
+.employee-form{
+    padding-left: 10px;
+    background-color: aqua;
+}
+
+.gender{
+    width: 70px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.addVehicleIntoParkingWrapper{
+    display: flex;
+    justify-content:center;
+    border-radius:25px;
+    padding: 20px;
+    margin: 20px;
+    
+}
+
+.addVehicleIntoParkingWrapper input{
+    margin:10px;
+}
+
+.giveFeedback{
+    text-align: center; 
+    border-radius:25px;
+    padding: 20px;
+    margin: 20px; 
+}
+
+.feedback{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.feedback input{
+    margin:10px;
+}
+
+.feedback img{
+    margin-top:30px;
+}
+
+.giveFeedback:hover{
+    transition: 2s;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+}
+
+
+.parkingPricingWrapper{
+    text-align: center;
+}
+
+.parkingPricing{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.parkingPricing div{
+    border-style: solid;
+    background-color: #b9bdc4;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s ease-in, 2s ease-out;
+}
+
+.parkingPricing div:hover{
+    box-shadow: 5px 5px 5cap 5px #55585c;
+}
+
+.pricePerMonth{
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: lightgrey;
+}
