@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkig Facility</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    
     <header class="nav-wrapper">
         <section>
             <nav class="navBar">
@@ -22,29 +24,29 @@
     </header>
     <main class="main">
         <h2>Welcome To MetaCube Parking portal</h2>
-        <img src = "../Project Images/addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
+        <img src = "./Project Images/addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
         <section class="addEmployee">
             <details>
-                    <summary>
-                        <div id="addEmployee">
-                        <h3>Add Employee 🧑‍💼</h3>
-                    </summary>
-                <form action="/action.php" >
+                <summary>
+                    <div id="addEmployee">
+                    <h3>Add Employee 🧑‍💼</h3>
+                </summary>
+                <form action="/action.php" class="employee-form" name="employee-form">
                     <div>
                         <label for="username">Enter your username:</label> 
-                        <input type="text" id="username" placeholder="name" name="name">
+                        <input type="text" id="username" placeholder="name" name="fname" onsubmit="return validateForm()">
                     </div>
                     <div>
                         <label for="gender">Please select gender : </label>
                         <input type="radio" id="male" name="gender" value="m">
-                        <label for="male">male</label>
+                        <label for="male" class="gender">male</label>
                         <input type="radio" id="female" name="gender" value="f">
-                        <label for="female">female</label>
+                        <label for="female" class="gender">female</label>
                         <input type="radio" id="other" name="gender" value="o">
-                        <label for="other">other</label>
+                        <label for="other" class="gender">other</label>
                     </div>
                     <div>
-                        <laber for="email">Enter your email id : </laber>
+                        <label for="email">Enter your email id : </label>
                         <input type="email" id="email" placeholder="abc@mail.com">
                     </div>
                     <div>
@@ -112,7 +114,7 @@
             
             <div class="feedback">
             <span>
-                <img src="../Project Images/sendMail.png" alt="send mail">
+                <img src="./Project Images/sendMail.png" alt="send mail">
             </span>
             <span>
                 <h3>Get in touch</h3>
@@ -163,5 +165,7 @@
         </summary>
         </section>
     </main>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

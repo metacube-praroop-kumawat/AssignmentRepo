@@ -1,6 +1,11 @@
 html{
     scroll-behavior: smooth;
 }
+
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .nav-wrapper{
     position: fixed;
     min-height: 46px;
@@ -51,54 +56,139 @@ html{
     border-radius: 25px;
     border: blue;
 }
+
 .main > img:hover{
     transition: 3s;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-    
+    box-shadow: 3px 3px 3px 3px lightgrey;   
+}
+
+section h3{
+    color: white;
+}
+
+section{
+    color:white;
+    background-color: darkblue;
+}
+
+details[open] summary h3{
+    color: darkblue;
+    background-color: white;
+ }
+
+details[open]{
+    color: black;
+    background-color: white;
+    border: 2px solid darkblue;
+    border-radius: 20px;
+    width:95%;
+    display:inline-block;
+    align-items:center;
+    margin-left: 25.6px;
+ }
+
+details button{
+    color: white;
+    background-color: darkblue;
+ }
+
+details button:hover{
+    color: darkblue;
+    background-color: lightgrey;
+ }
+
+input{
+    background-color:transparent;
+    border: 2px solid grey ;
+    border-radius: 4px;
+}
+input:focus {
+    outline:none;
+    border-color: darkblue;
+}
+
+label { 
+    width: 300px;
+    font-size: 16px;
+    margin-top:10px;
+}
+
+.employee-form{
+    padding-left: 10px;
+}
+
+.gender{
+    width: 70px
 }
 
 .addEmployee{
-    display: flex;
-    justify-content: center;  
-    border-radius:25px;
-    padding: 20px;
-    margin: 20px;
-    /* background-color: aqua; */
+    text-align: center;
+    border-radius:10px;
+    margin: 10px 20px;
 }
 
-.addEmployee:hover{
-    transition: 2s;
-    box-shadow: 3px 3px 3px 3px lightgrey;
+summary{
+    height: 80px;
 }
 
 
-.addEmployee div input{
-    justify-content: end;
-    margin: 10px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .addVehicleIntoParkingWrapper{
-    display: flex;
-    justify-content:center;
-    border-radius:25px;
-    padding: 20px;
-    margin: 20px;
+    border-radius:10px;
+    margin: 10px 20px;
+    text-align: center;
 }
 
-.addVehicleIntoParkingWrapper:hover{
-    transition: 2s;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-}
-
-.addVehicleIntoParkingWrapper input{
-    margin:10px;
-}
 
 .giveFeedback{
     text-align: center; 
-    border-radius:25px;
-    padding: 20px;
-    margin: 20px; 
+    border-radius:10px;
+    margin: 10px 20px;
 }
 
 .feedback{
@@ -107,19 +197,9 @@ html{
     justify-content: space-around;
 }
 
-.feedback input{
-    margin:10px;
-}
-
 .feedback img{
     margin-top:30px;
 }
-
-.giveFeedback:hover{
-    transition: 2s;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-}
-
 
 .parkingPricingWrapper{
     text-align: center;
