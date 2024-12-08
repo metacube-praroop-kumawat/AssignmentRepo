@@ -1,171 +1,289 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkig Facility</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parking System</title>
     <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    
-    <header class="nav-wrapper">
+  </head>
+
+  <body>
+    <nav class="navBar">
+        <div class="logo">
+            <h3>MetaCube parking </h3>
+        </div>
+        <ul class="navBar__list list">
+            <li class="navBar_list_item"><a href="ParkingFacility.html">Home</a></li>
+            <li class="navBar__list__item"> <a href="#AddEmployee">Add Employee</a> </li>
+            <li class="navBar__list__item"> <a href="#AddVehicle">Add vehicle</a> </li>   
+            <li class="navBar__list__item"> <a href="#Feedback">Feedback</a> </li> 
+            <li class="navBar__list__item"> <a href="#Pricing">Pricing </a> </li>
+        </ul>
+    </nav> 
+    <main>
         <section>
-            <nav class="navBar">
-                <div class="navBarElem">
-                    <a href="ParkingFacility.html">Home</a> 
-                    <a href = "#addEmployee">Add Employee</a>
-                    <a href = "#addVehicleIntoParking">Add Vehicle</a>
-                    <a href = "#giveFeedback">Give Feedback</a>
-                    <a href = "#parkingPricing">Pricing</a>
-                </div>
-            </nav>
-        </section>
-    </header>
-    <main class="main">
-        <h2>Welcome To MetaCube Parking portal</h2>
-        <img src = "./Project Images/addVehicleInParking.jpg" alt = "add vehicle" height = "500" wigth ="300">
-        <section class="addEmployee">
-            <details>
-                <summary>
-                    <div id="addEmployee">
-                    <h3>Add Employee 🧑‍💼</h3>
-                </summary>
-                <form action="/action.php" class="employee-form" name="employee-form">
-                    <div>
-                        <label for="username">Enter your username:</label> 
-                        <input type="text" id="username" placeholder="name" name="fname" onsubmit="return validateForm()">
-                    </div>
-                    <div>
-                        <label for="gender">Please select gender : </label>
-                        <input type="radio" id="male" name="gender" value="m">
-                        <label for="male" class="gender">male</label>
-                        <input type="radio" id="female" name="gender" value="f">
-                        <label for="female" class="gender">female</label>
-                        <input type="radio" id="other" name="gender" value="o">
-                        <label for="other" class="gender">other</label>
-                    </div>
-                    <div>
-                        <label for="email">Enter your email id : </label>
-                        <input type="email" id="email" placeholder="abc@mail.com">
-                    </div>
-                    <div>
-                        <label for="pass">Enter your password :   </label>
-                        <input type="password" id="pass" placeholder="password">
-                        <br>
-                        <label for="repass">Re-enter your password : </label>
-                        <input type="password" id="repass" placeholder="password again">
-                    </div>
-                    <div>
-                        <label for="contactNo">Enter your Contact number : </label>
-                        <input type="tel" id="contactNo" placeholder="contact number">
-                    </div>
-                    <button type="submit">Register</button>
-                </form>
+            <div class="cover">
+                <img class="containedImg cover__img" src="./Project Images/addVehicleInParking.jpg" alt="cover image">
             </div>
-        </details>
         </section>
-        
-        <section class="addVehicleIntoParkingWrapper">
-            <details>
-            <summary class="addVehicleIntoParking">
-            <div >
-                <h3>Add Vehicle into Parking 🚘</h3>
-            </summary>
-                <form action="/action">
-                    <div>
-                        <label for="vehicleMake">Enter ther company of your vehicle : </label>
-                        <input type="text" id="vehicelMake" placeholder="company">
-                    </div>
-                    <div>
-                        <label for="modelNo">Enter your model : </label>
-                        <input type="search" id="modelNo" placeholder="Model number">
-                    </div>
-                    <div>
-                        <label for="vehicleType">What is the type of your vehicle</label>
-                        <select name="vehicleType" id="vehicleType">
-                            <option value="cycle">Cycle 🚲</option>
-                            <option value="motorCycle">Motor cycle 🏍️</option>
-                            <option value="4wheeler">Four wheeler 🚗</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="vehicleNum">Enter your vehicle number : </label>
-                        <input type="search" id="vehicleNum" placeholder="vehicle number">
-                    </div>
-                    <div>
-                        <label for="empId">Enter your employee id : </label>
-                        <input type="number" id="empId" placeholder="employee id">
-                    </div>
-                    <div>
-                        <label for="identification">Decribe identification :-</label>
-                        <br />
-                        <textarea id="identification"></textarea>
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </details>
-        </section>
-    
-        <section class="giveFeedback">
-            <details>
-                <summary><h3>Give Feedback 📝</h3></summary>
+
+        <section class="section" id="AddEmployee">
             
-            <div class="feedback">
-            <span>
-                <img src="./Project Images/sendMail.png" alt="send mail">
-            </span>
-            <span>
-                <h3>Get in touch</h3>
-                <form>
-                    <div>
-                        <input type="text" placeholder="Name">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Email">
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Subject">
-                    </div>
-                    <div>
-                        <textarea placeholder="Message"></textarea>
-                    </div>
-                    <button type="button">Send Email-></button>
-                </form>
-            </span>
-        </div>  
-        </details>
-        </section>
-        <section class="parkingPricingWrapper">
-            <details>
-                 <summary>
-                    <h4>Pricing 💸</h4>
-                </summary>
-                <div class="parkingPricing">
-                <div>
-                    <h4>Cycle 🚲</h4>
-                    <p class="pricePerMonth"><b>$ 100</b><br/>/ month</p>
-                    <p>$5 daily<br/>$100 monthly<br/>$500 yearly</p>
-                    <button type="button">PURCHASE NOW</button>
-                </div>
-                <div>
-                    <h4>Motor Cycle 🏍️</h4>
-                    <p class="pricePerMonth"><b>$200</b><br>/ month</p>
-                    <p>$10 daily<br/>$200 monthly<br/>$1000 yearly</p>
-                    <button type="button">PURCHASE NOW</button>
-                </div>
-                <div>
-                    <h4>Four Wheeler 🚗</h4>
-                    <p class="pricePerMonth"><b>$500</b><br>/ month</p>
-                    <p>$20 daily<br/>$500 monthly<br/>$3500 yearly</p>
-                    <button type="button">PURCHASE NOW</button>
-                </div>       
+            <div class="section__heading">
+                <h2 class="section__heading__head">Add Employee</h2>
+                <label for="employeeToggle">
+                    &#11206;
+                </label>
             </div>
-        </summary>
+
+            <input id="employeeToggle" checked class="section__toggle" type="checkbox">
+            
+            <div class="container">
+                <p id="empId"></p>
+                <div class="formContainer">
+                        <form class="form" action="/addEmployee" method="post">
+
+                            <label for="fullName" class="form__label hide">
+                                Full name
+                            </label>
+                            <input required onkeydown="return /[a-z]/i.test(event.key)" minlength="2" id="fullName" class="form__input hide" type="text" name="fullName" />
+
+                            <label for="gender__radio" class="form__label hide"> Gender </label>
+
+                            <div aria-required id="gender__radio" role="radiogroup" class="form__radio hide">
+                                <label for="male" class="form__label">
+                                    <input id="male" class="form__input" type="radio" name="gender" value="male" />
+                                    Male
+                                </label>
+
+                                <label for="female" class="form__label">
+                                    <input id="female" class="form__input" type="radio" name="gender" value="female"/>
+                                    Female
+                                </label>
+
+                                <label for="otherGender" class="form__label">
+                                    <input id="otherGender" class="form__input" type="radio" name="gender" value="others"/>
+                                    others
+                                </label>
+                            </div>
+
+                            <label  for="email" class="form__label hide">
+                                Email
+                            </label>
+                            <input required id="email" class="form__input hide" type="email" name="email" />
+
+                            <label for="password" class="form__label hide">
+                                Password
+                            </label>
+                            <input required minlength="8" maxlength="15" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="password" class="form__input hide" type="password" name="password" />
+
+                            <label for="confirmPassword" class="form__label hide">
+                                Confirm password
+                            </label>
+                            <input required minlength="8" maxlength="15" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="confirmPassword" class="form__input hide" type="password" name="confirmPassword" />
+
+                            <label for="mobile" class="form__label hide">
+                                Mobile
+                            </label>
+                            <input required  minlength="8" id="mobile" class="form__input hide" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" placeholder="123-1245-678" />
+                            
+                            <button type="button" class="cancel form__button">cancel</button>
+                            <button type="button" class="next  form__button">next</button>
+
+                            <input class="form__submit form__button form__input hide" type="submit"/>
+        
+                        </form>
+                   </div>
+            </div>
         </section>
+
+        <section class="section" id="AddVehicle">
+
+            <div class="section__heading">
+                <h2 class="section__heading__head">Add Vehicle</h2>
+                <label for="vehicleToggle">
+                    &#11206;
+                </label>
+            </div>
+            <input id="vehicleToggle" checked class="section__toggle" type="checkbox">
+            
+            <div class="container">
+                <p id="vehId"></p>
+                <div class="formContainer">
+            
+                        <form class="form" action="/addVehicle" method="get">
+
+                            <label  for="company" class="form__label hide">
+                                company
+                            </label>
+                            <input required onkeydown="return /[a-z]/i.test(event.key)" minlength="2" id="company" class="form__input hide" type="text" name="company" />
+
+                            <label  for="model" class="form__label hide">
+                                Model
+                            </label>
+                            <input required minlength="2" id="model" class="form__input hide" type="text" name="model" />
+
+                            <label for="vehicleRadio" class="form__label hide">
+                                Type
+                            </label>
+                         
+                            <div id="vehicleRadio" role="radiogroup" class="form__radio hide">
+                                <label for="carType" class="form__label">
+                                    <input id="carType" class="form__input" type="radio" name="type" value="car"/>
+                                    car
+                                </label>
+                                <label for="bikeType" class="form__label">
+                                    <input id="bikeType" class="form__input" type="radio" name="type" value="bike"/>
+                                    bike
+                                </label>
+                                <label for="otherType" class="form__label">
+                                    <input id="otherType" class="form__input" type="radio" name="type" value="others"/>
+                                    others
+                                </label>
+                            </div>    
+                            
+
+                            <label  for="vehicleNumber" class="form__label hide">
+                                Vehicle number
+                            </label>
+                            <input required  minlength="2" id="vehicleNumber" class="form__input hide" type="text" name="vehicleNumber" />
+
+                            <label for="employeeId" class="form__label hide">
+                                Employee id
+                            </label>
+                            <input required minlength="2" id="employeeId" class="form__input hide" type="text" name="employeeId" />
+
+                            <label for="Identification" class="form__label hide">
+                                Identification
+                            </label>
+                            <textarea required minlength="20" id="Identification" class="form__input hide form__textArea"  name="Identification" rows="4" cols="50" placeholder="how your car can de identified?"></textarea>
+                             
+                            <button type="button" class="cancel form__button">cancel</button>
+                            <button type="button" class="next  form__button">next</button>
+
+                            <input class="form__submit form__button form__input hide" type="submit"/>
+                          
+                        </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="Feedback">
+
+            <div class="section__heading">
+                <h2 class="section__heading__head">Feedback</h2>
+                <label for="feedbackToggle">
+                    &#11206;
+                </label>
+            </div>
+
+            <input id="feedbackToggle" checked class="section__toggle" type="checkbox">
+
+            <div class="container">
+                <div class="formContainer"> 
+                    <div><img src="./Project Images/sendMail.png"></div>
+                    <form class="form" action="/action.php" method="post">
+                        
+                        <label for="rating" class="form__label">
+                            Rate on scale of 5
+                        </label>
+                        <input id="rating" class="form__input" type="number" name="rating" max=5 min="1"/>
+                         
+                        <label for="./Project Images/feedback.png" class="form__label">
+                            Feedback
+                        </label>
+                        <textarea id="./Project Images/feedback.png" class="form__input form__textArea"  name="./Project Images/feedback.png" rows="4" cols="40" placeholder="describe your experience..."></textarea>
+                       
+                        <input class="form__submit form__button form__input" type="submit"/>
+                     
+                    </form>
+                </div>
+           </div>
+            
+        </section>
+
+        <section class="section" id="Pricing">
+
+            <div class="section__heading">
+                <h2 class="section__heading__head">Pricing</h2>
+                
+                <label for="pricingToggle">
+                    &#11206;
+                </label>
+
+                <select name="currencies" id="currencies">
+                    <option value="rupee">Rupee</option>
+                    <option value="usd">USD</option>
+                    <option value="euro">Euro</option>
+                </select>
+
+            </div>
+            <input id="pricingToggle" checked class="section__toggle" type="checkbox">
+
+
+            
+            <div class="cardContainer">
+                    <p id="pricingId">pls fill the vehicle form first to see pricing</p>
+                    <div id="carCard" class="card hide">
+
+                        <h3 class="card__heading">Car</h3>
+
+                        <div class="card__logo">
+                            <h2>₹1000</h2>
+                            <p>/month</p>    
+                        </div>
+
+                        <ul class="card__list list">  
+                            <li class="card__list__item list__item"><p>₹100 Daily</p></li>
+                            <li class="card__list__item list__item"><p>₹1000 Monthly</p></li> 
+                            <li class="card__list__item list__item"><p>₹5000 yearly</p></li> 
+                        </ul>
+
+                        <button class="primaryBtn" >Purchase Now</button>
+                    </div>
+
+                    <div id="bikeCard" class="card hide">
+                        <h3 class="card__heading">Bike</h3>
+
+                        <div class="card__logo">
+                            <h2>₹1000</h2>
+                            <p>/month</p>    
+                        </div>
+
+                        <ul class="card__list list">  
+                            <li class="card__list__item list__item"><p>₹100 Daily</p></li>
+                            <li class="card__list__item list__item"><p>₹1000 Monthly</p></li> 
+                            <li class="card__list__item list__item"><p>₹5000 yearly</p></li> 
+                        </ul>
+
+                        <button class="primaryBtn" >Purchase Now</button>
+                    </div>
+
+                    <div id="othersCard" class="card hide">
+                        <h3 class="card__heading">others</h3>
+
+                        <div class="card__logo">
+                            <h2>₹1000</h2>
+                            <p>/month</p>    
+                        </div>
+
+                        <ul class="card__list list">  
+                            <li class="card__list__item list__item"><p>₹100 Daily</p></li>
+                            <li class="card__list__item list__item"><p>₹1000 Monthly</p></li> 
+                            <li class="card__list__item list__item"><p>₹5000 yearly</p></li> 
+                        </ul>
+
+                        <button class="primaryBtn" >Purchase Now</button>
+                    </div>
+
+            </div>
+            
+        </section>
+
     </main>
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/script.js"></script>
 </body>
+<script src="./js/script.js"></script>
 </html>
