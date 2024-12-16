@@ -1,0 +1,85 @@
+
+.header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+background-color: white;
+box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+width: 95%;
+margin: auto;
+margin-top: 2%;
+margin-bottom: 2%;
+padding: 2%;
+}
+
+.header span{
+    font-size: large;
+    font-weight: 500;
+    color: rgb(35, 94, 184);
+}
+
+.header button{
+    padding: 1%;
+    width: 14%;
+    font-size: medium;
+    font-weight: 600;
+    border: 2px solid rgb(35, 94, 184);
+    background: transparent;
+    cursor: pointer;
+}
+
+.todoContainer{
+    background-color: transparent;
+    width: 100%;
+}
+
+.todoCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 6%;
+    width: 95%;
+    margin: auto;
+}
+
+.cardDiv{
+    height: 27rem;
+    width: 19%;
+    background-color: #f2f2f2;
+    overflow-y: auto;
+}
+
+.cardDiv>h6{
+    background-color: #eceaea;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.card{
+    position: relative;
+    padding: 0.5rem;
+}
+
+.cardWrapper{
+    overflow-y: auto;
+}
+
+.card .card-footer{
+    padding: 0.5rem 2px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.card-icon-wrapper{
+    display: flex;
+    column-gap: 0.7rem;
+    cursor: pointer;
+}
+
+.card-footer .status{
+    font-size: .6rem;
+}
