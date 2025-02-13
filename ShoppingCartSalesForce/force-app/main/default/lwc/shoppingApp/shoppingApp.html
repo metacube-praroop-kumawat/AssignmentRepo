@@ -1,0 +1,11 @@
+<template>
+    <template if:true = {showMyOrders}>
+        <c-my-orders onswitchview = {handleSwitchView}></c-my-orders>
+    </template>
+    <template if:true = {showPurchaseNewOrder}>
+        <c-purchase-new-order cart-items = {cartItems} onswitchview = {handleSwitchView}></c-purchase-new-order>
+    </template>
+    <template if:true = {showInvoice}>
+        <c-invoice items = {cartItems} onswitchview = {handleSwitchView}></c-invoice>
+    </template>
+</template>

@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Invoice">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+                Invoice no: # {invoiceNo}
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                Order Date : <lightning-formatted-date-time value={currentDate} ></lightning-formatted-date-time>
+            </div>
+        </div>
+
+
+
+        <lightning-datatable
+            key-field="Id"
+            data = {items}
+            columns={columns}
+            hide-checkbox-column="true"
+        >
+        </lightning-datatable>
+        <div class="slds-m-top_medium">
+            <lightning-button 
+                label="Place Order" 
+                onclick={handlePlaceOrder} 
+                variant="brand"
+            >
+            </lightning-button>
+        </div>
+    </lightning-card>    
+</template>

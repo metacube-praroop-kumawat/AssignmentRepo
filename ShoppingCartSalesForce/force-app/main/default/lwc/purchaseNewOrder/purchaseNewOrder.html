@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Products">
+        <lightning-input type="search" label="Search Product" onchange={handleSearch}></lightning-input>
+        <template if:true = {products.length}>
+            <lightning-datatable
+                key-field        = "Id"
+                data             = {products}
+                columns          = {columns}
+                sorted-by        = {sortedBy}
+                sorted-direction = {sortedDirection}
+                onsort           = {handleSort}
+                onrowselection = {getSelectedName}
+            >
+            </lightning-datatable>
+            <div class="slds-m-top_medium">
+                <lightning-button 
+                    class="slds-m-top_small"
+                    label="Go to Cart" 
+                    onclick={handleGoToCart} 
+                    variant="brand"
+                    if:true={cartItems.length}>
+                </lightning-button>
+            </div>
+        </template>
+        <template if:false = {products.length}>
+            <p>No products found.</p>
+        </template>
+        <c-pagination-component
+            current-page = {currentPage}
+            total-pages = {totalPages}
+            onpagechange = {handlePageChange}
+        >
+        </c-pagination-component>
+    </lightning-card>
+    <template if:true={showCart}>
+        <lightning-card title="My Cart">
+            <c-my-cart cart-items={cartItems} onupdatequantity = {handleQuantityUpdate} onswitchview = {handleSwitchView} onremovefromcart={handleRemoveFromCart}></c-my-cart>
+        </lightning-card>
+        
+    </template>
+    
+</template>

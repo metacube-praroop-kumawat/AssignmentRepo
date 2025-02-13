@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="My Orders">
+        <lightning-spinner if:true = {loading} alternative-text = "Loading..."></lightning-spinner>
+        <template if:true = {orders.length}>
+            <lightning-datatable 
+                key-field= "Id" 
+                data = {orders} 
+                columns = {columns} 
+                sorted-by = {sortedBy}
+                sorted-direction = {sortedDirection}
+                onsort = {handleSort}
+            >
+            </lightning-datatable>
+        </template>
+        <template if:false = {orders.length}>
+            <p>No orders found.</p>
+        </template>
+        <lightning-button 
+            label="Add New Purchase Order" 
+            variant="brand" 
+            onclick={handleAddNewPurchaseOrder}
+        >
+        </lightning-button>
+        <c-pagination-component
+            current-page = {currentPage}
+            total-pages = {totalPages}
+            onpagechange = {handlePageChange}
+        >
+        </c-pagination-component>
+    </lightning-card>
+</template>

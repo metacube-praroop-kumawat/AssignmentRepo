@@ -1,0 +1,9 @@
+<template>
+    <div class="pagination slds-align_absolute-center slds-m-top_medium">
+        <button class="btn slds-m-horizontal_small" onclick={handleFirst} disabled={disableFirstPrev}>First</button>
+        <button class="btn slds-m-horizontal_small" onclick={handlePrevious} disabled={disableFirstPrev}>Previous</button>
+        <span>Page {currentPage} of {totalPages} </span>
+        <button class="btn slds-m-horizontal_small" onclick={handleNext} disabled={disableNextLast}>Next</button>
+        <button class="btn slds-m-horizontal_small" onclick={handleLast} disabled={disableNextLast}>Last</button>
+    </div>
+</template>

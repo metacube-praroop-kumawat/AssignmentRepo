@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Shopping Cart">
+        <lightning-datatable
+            key-field="Id"
+            data={cartItems}
+            columns={columns}
+            draft-values={draftValues}
+            hide-checkbox-column="true"
+            onrowaction={handleRowAction}
+            onsave={handleSave}
+        >
+        </lightning-datatable>
+        <div class="slds-m-top_medium">
+            <lightning-button if:true={checkout}
+                label="Checkout" 
+                onclick={handleCheckout} 
+                variant="brand"
+            >
+            </lightning-button>
+        </div>
+    </lightning-card>    
+</template>
