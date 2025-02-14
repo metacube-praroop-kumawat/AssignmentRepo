@@ -6,14 +6,16 @@ export default class MyOrders extends LightningElement {
     @track currentPage = 1;
     @track totalPages = 1;
     @track sortedBy = 'Order_Total__c';
-    @track sortedDirection = 'ASC';
+    @track sortedDirection = 'DESC';
     loading = false;
     pageSize = 5;
 
     columns = [
         {label: 'PO Id', fieldName: 'Id', sortable: true},
+        {label: 'Order Date', fieldName: 'Order_Date__c', sortable: true},
         {label: 'Status', fieldName: 'Status__c', sortable: true},
         {label: 'Order Total', fieldName: 'Order_Total__c', sortable: true}
+        
     ]
 
     connectedCallback(){

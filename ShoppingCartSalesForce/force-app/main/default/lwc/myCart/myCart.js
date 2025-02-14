@@ -43,12 +43,13 @@ export default class MyCart extends LightningElement {
     }
 
     handleCheckout(){
-        
+        if(this.cartItems.length>0){
         try {
             this.dispatchEvent(new CustomEvent('switchview', { detail:  {view: 'showInvoice', orderItems: this.cartItems}}));
         } catch (error) {
             console.log("Error Checkout : ", error);
         }
+    }
         }
        
 
@@ -61,7 +62,7 @@ export default class MyCart extends LightningElement {
             updatedFields.forEach(item => {
                 console.log(item);
                 
-                if (item.Quantity__c<= 0 || item.Quantity__c>item.Available_Quantity__c) {
+                if (item.Quantity__c<= 0) {
                     validUpdate = false; // Set flag to false if any quantity is invalid
                 }
             });

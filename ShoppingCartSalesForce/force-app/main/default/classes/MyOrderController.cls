@@ -17,15 +17,15 @@ public with sharing class MyOrderController {
     @AuraEnabled(cacheable=true)
     public static Map<String, Object> getProducts(String searchTerm, Integer pageNumber,Integer pageSize, String sortedBy, String sortedDirection){
         Integer offsetSize = (pageNumber - 1) * pageSize;
-        System.debug('searchTerm : ' + searchTerm + ' pageNumber : ' + pageNumber + ' pageSize : ' + pageSize);
-        System.debug('sorted By : ' + sortedBy + ' sortedDirection : ' + sortedDirection);
+        //System.debug('searchTerm : ' + searchTerm + ' pageNumber : ' + pageNumber + ' pageSize : ' + pageSize);
+        //System.debug('sorted By : ' + sortedBy + ' sortedDirection : ' + sortedDirection);
         String query = 'SELECT Id, Name, ProductCode, Quantity__c, Product_Price__c FROM Product2 WHERE ' +
             		   'Quantity__c > 0 AND Name LIKE \'' + '%' + searchTerm + '%' + '\' ORDER BY ' + 
                         sortedBy + ' ' + sortedDirection + ' LIMIT ' + pageSize + ' OFFSET ' + offsetSize;
         List<Product2> products = Database.query(query);
-        System.debug('Products : ' + products);
+        //System.debug('Products : ' + products);
         Integer totalProducts = [SELECT COUNT() FROM Product2 WHERE Quantity__c > 0 AND Name LIKE :('%' + searchTerm + '%')];
-        System.debug('total Products : ' + totalProducts);
+        //System.debug('total Products : ' + totalProducts);
         Decimal totalPages = Math.ceil((Decimal)totalProducts / pageSize);
         return new Map<String, Object>{
             'products' => products,

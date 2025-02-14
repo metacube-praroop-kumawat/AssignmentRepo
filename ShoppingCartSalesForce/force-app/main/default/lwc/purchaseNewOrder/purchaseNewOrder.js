@@ -12,7 +12,7 @@ export default class PurchaseNewOrder extends LightningElement {
     totalPages = 1;
     sortedBy = 'Name';
     sortedDirection = 'ASC';
-    pageSize = 10;
+    pageSize = 2;
     showCart = false;
 
     columns = [
@@ -207,10 +207,22 @@ export default class PurchaseNewOrder extends LightningElement {
         updatedProduct.map((productUpdate)=>{
             let productToUpdate = this.products.find((product)=> product.Id === productUpdate.Id);
             let cartItemToUpdate = this.cartItems.find((item)=> item.Id === productUpdate.Id);
-
+            if (productToUpdate.Quantity__c-productUpdate.Quantity__c>=0){
             productToUpdate.Available_Quantity = productToUpdate.Quantity__c - productUpdate.Quantity__c;
             cartItemToUpdate.Quantity__c = productUpdate.Quantity__c;
+            }
+            else{
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error',
+                        message: "Quantity Requested is more than available quantity",
+                        variant: 'error',
+                    })
+                );
+            }
+
         })
+        
 
         // this.products.map((product)=>{
         //     if(product.Id === recordId){
