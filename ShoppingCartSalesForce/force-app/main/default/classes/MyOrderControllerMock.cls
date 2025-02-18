@@ -5,7 +5,8 @@ public class MyOrderControllerMock {
         // Create mock data
         List<PurchaseOrder__c> mockOrders = new List<PurchaseOrder__c>();
         for (Integer i = 0; i < pageSize; i++) {
-            mockOrders.add(PurchaseOrder__c(Id = 'mockId' + i, Status__c = 'New', Order_Total__c = 100 + i));
+            // Create a mock PurchaseOrder__c without setting Order_Total__c
+            mockOrders.add(new PurchaseOrder__c(Id = 'mockId' + i, Status__c = 'New'));
         }
         
         // Create a mock response

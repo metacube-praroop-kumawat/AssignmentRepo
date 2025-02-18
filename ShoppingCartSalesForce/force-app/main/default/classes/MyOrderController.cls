@@ -3,8 +3,8 @@ public with sharing class MyOrderController {
     @AuraEnabled(cacheable=true)
     public static Map<String, Object> getOrders(Integer pageNumber, Integer pageSize, String sortedBy, String sortedDirection){
         Integer offsetSize = (pageNumber - 1) * pageSize;
-        String query = 'SELECT Id, Status__c, Order_Total__c FROM purchaseOrder__c ORDER BY ' + 
-                       sortedBy + ' ' + sortedDirection + ' LIMIT ' + pageSize + ' OFFSET ' + offsetSize;
+        String query = 'SELECT Id, Status__c, Order_Total__c,Order_Date__c FROM purchaseOrder__c ORDER BY ' + 
+                       sortedBy + ' ' + sortedDirection + '  LIMIT ' + pageSize + ' OFFSET ' + offsetSize;
         List<purchaseOrder__c> orders = Database.query(query);
         Integer totalOrders = [SELECT COUNT() FROM purchaseOrder__c];
         Decimal totalPages = Math.ceil((Decimal)totalOrders / pageSize);
@@ -17,15 +17,15 @@ public with sharing class MyOrderController {
     @AuraEnabled(cacheable=true)
     public static Map<String, Object> getProducts(String searchTerm, Integer pageNumber,Integer pageSize, String sortedBy, String sortedDirection){
         Integer offsetSize = (pageNumber - 1) * pageSize;
-        //System.debug('searchTerm : ' + searchTerm + ' pageNumber : ' + pageNumber + ' pageSize : ' + pageSize);
-        //System.debug('sorted By : ' + sortedBy + ' sortedDirection : ' + sortedDirection);
+        System.debug('searchTerm : ' + searchTerm + ' pageNumber : ' + pageNumber + ' pageSize : ' + pageSize);
+        System.debug('sorted By : ' + sortedBy + ' sortedDirection : ' + sortedDirection);
         String query = 'SELECT Id, Name, ProductCode, Quantity__c, Product_Price__c FROM Product2 WHERE ' +
             		   'Quantity__c > 0 AND Name LIKE \'' + '%' + searchTerm + '%' + '\' ORDER BY ' + 
                         sortedBy + ' ' + sortedDirection + ' LIMIT ' + pageSize + ' OFFSET ' + offsetSize;
         List<Product2> products = Database.query(query);
-        //System.debug('Products : ' + products);
+        System.debug('Products : ' + products);
         Integer totalProducts = [SELECT COUNT() FROM Product2 WHERE Quantity__c > 0 AND Name LIKE :('%' + searchTerm + '%')];
-        //System.debug('total Products : ' + totalProducts);
+        System.debug('total Products : ' + totalProducts);
         Decimal totalPages = Math.ceil((Decimal)totalProducts / pageSize);
         return new Map<String, Object>{
             'products' => products,
@@ -41,10 +41,22 @@ public with sharing class MyOrderController {
             //create new purchaseOrder record
             PurchaseOrder__c newOrder = new PurchaseOrder__c();
             insert newOrder;
+
+            //map of product2 object
+            Map<Id, Product2> updatedProductsMap = new Map<Id, Product2>();
+            for(Product2 orderItem: orderItems){
+                updatedProductsMap.put(orderItem.Id, orderItem);
+            }
             
             //create list for purchase order items
             List<PurchaseOrderLineItem__c> lineItems = new List<PurchaseOrderLineItem__c>();
+            List<Product2> updatedProducts = [SELECT Id, Quantity__c FROM Product2 WHERE Id IN :updatedProductsMap.keySet()];
             
+            for(Product2 productToUpdate: updatedProducts){
+                Product2 updatedProduct = updatedProductsMap.get(productToUpdate.Id);
+                productToUpdate.Quantity__c = productToUpdate.Quantity__c - updatedProduct.Quantity__c;
+            }
+
             for(Product2 orderItem: orderItems){
                 PurchaseOrderLineItem__c item = new PurchaseOrderLineItem__c();
                 item.Product__c = orderItem.Id;
@@ -55,6 +67,8 @@ public with sharing class MyOrderController {
             }
             
             insert lineItems;
+            update updatedProducts;
+
             System.debug('order placed: ' + newOrder);
             return 'order successfully placed';
         }catch(Exception e){

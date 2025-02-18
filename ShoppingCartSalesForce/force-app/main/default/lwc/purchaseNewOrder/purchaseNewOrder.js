@@ -12,7 +12,7 @@ export default class PurchaseNewOrder extends LightningElement {
     totalPages = 1;
     sortedBy = 'Name';
     sortedDirection = 'ASC';
-    pageSize = 2;
+    pageSize = 10;
     showCart = false;
 
     columns = [
@@ -77,49 +77,6 @@ export default class PurchaseNewOrder extends LightningElement {
         this.fetchProducts();
     }
 
-    //use to handle addToCart action 
-    // handleRowAction(event) {
-    //     const actionName = event.detail.action.name;
-    //     const selectedProduct = event.detail.row;
-    //     if (actionName === 'add_to_cart') {
-    //         this.addToCart(selectedProduct);
-    //     }
-    // }
-
-    // function to add products to cart
-    // addToCart(product) {
-    //     try {
-    //         let updatedCart = [...this.cartItems];
-    //         let existingCartItem = updatedCart.find(item => item.Id === product.Id);
-    //         if(product.Quantity__c == 0){
-    //             this.showToast('Error', 'Product Quantity is 0!', 'error');
-    //         }
-    //         else{
-
-    //             if (existingCartItem) {
-    //                 existingCartItem.Quantity__c += 1;
-    //             } else {
-    //                 updatedCart.push({ ...product, Quantity__c: 1 });
-    //                 updatedCart = JSON.parse(JSON.stringify(updatedCart));
-    //             }
-    //             console.log("updatedCart : ", updatedCart);
-    //             console.log("existing cart item : ", existingCartItem);
-    //             let productIndex = this.products.findIndex(p => p.Id === product.Id);
-    //             console.log("product index : ", productIndex);
-    //             if (productIndex !== -1) {
-    //                 this.products[productIndex].Quantity__c -= 1;
-    //                 this.products=[...this.products];
-    //                 console.log("products after updation : ", this.products);
-    //             }
-    //             this.cartItems = updatedCart;
-    //             this.showCart = true;
-    //         }
-    //     } catch (error) {
-    //         this.showToast('Error', error.body.message, 'error');
-    //     }
-        
-    // }
-
     //remove from cart handler
     
     handleRemoveFromCart(event) {
@@ -143,14 +100,14 @@ export default class PurchaseNewOrder extends LightningElement {
         this.showCart = true;
     }
 
-    showToast(title, message, variant){
-        const evt = new ShowToastEvent({
-            title: title,
-            message: message,
-            variant: variant,
-        })
-        this.dispatchEvent(evt);
-    }
+    // showToast(title, message, variant){
+    //     const evt = new ShowToastEvent({
+    //         title: title,
+    //         message: message,
+    //         variant: variant,
+    //     })
+    //     this.dispatchEvent(evt);
+    // }
 
     handleSwitchView(event){
         const view = event.detail.view;
@@ -174,34 +131,14 @@ export default class PurchaseNewOrder extends LightningElement {
                 updateProduct.Available_Quantity =updateProduct.Quantity__c - 1;
             });
             this.products = [...this.products];
-            // let updatedCart=[...this.cartItems];
-            // // updatedCart.push({ ...this.cartItems, Quantity__c: 1 });
-            // this.cartItems = updatedCart;
-            
-
-            // updatedCart = JSON.parse(JSON.stringify(updatedCart));
-
-            // console.log("updatedCart : ", updatedCart);
-            // console.log("existing cart item : ", existingCartItem);
-            // let productIndex = this.products.findIndex(p => p.Id === product.Id);
-            // console.log("product index : ", productIndex);
-            // if (productIndex !== -1) {
-            //     this.products[productIndex].Quantity__c -= 1;
-            //     this.products=[...this.products];
-            //     console.log("products after updation : ", this.products);
-            // }
         } catch (error) {
             console.error("Error is : ", error.body.message);
             // this.showToast('Error', error.body.message, 'error');
         }
-        // console.log('You selected: ' + JSON.stringify(this.cartItems));
-        
     }
 
     handleQuantityUpdate(event){
         const updatedProduct = event.detail;
-        // const recordId = updatedProduct[0].Id; // Assuming single row update for simplicity
-        // const newValue = updatedProduct[0].Quantity__c; // Assuming Amount__c is the editable field
         console.log("Updated products : ", updatedProduct);
         console.log("products available : ", this.products);
         updatedProduct.map((productUpdate)=>{
@@ -222,15 +159,6 @@ export default class PurchaseNewOrder extends LightningElement {
             }
 
         })
-        
-
-        // this.products.map((product)=>{
-        //     if(product.Id === recordId){
-                // console.log("currently product in update : ", product);
-        //         product.Available_Quantity = product.Quantity__c - newValue;
-        //         console.log("currently updated product : ", product);
-        //     }
-        // })
 
         this.products = [...this.products];
         this.cartItems = [...this.cartItems];
