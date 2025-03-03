@@ -2,81 +2,97 @@
 public class MyOrderControllerTest {
     
     @isTest
-    static void testGetOrdersWithMock() {
-        // Use the mock method
-        Map<String, Object> result = MyOrderControllerMock.mockGetOrders(1, 5, 'Order_Total__c', 'ASC');
+    static void testGetOrders() {
+        // Create a mock for IOrderSelector
+        fflib_Mock mockOrderSelector = new fflib_Mock(IOrderSelector.class);
+        mockOrderSelector.setup('getOrders', new Map<String, Object>{
+            'orders' => new List<PurchaseOrder__c>{
+                new PurchaseOrder__c(Status__c = 'New', Order_Total__c = 100.00, Order_Date__c = Date.today())
+            },
+            'totalPages' => 1
+        });
 
-        // Assertions
+        // Inject the mock into the controller
+        MyOrderController.orderSelector = (IOrderSelector) mockOrderSelector;
+
+        // Test method
+        Test.startTest();
+        Map<String, Object> result = MyOrderController.getOrders(1, 10, 'Order_Date__c', 'ASC');
+        Test.stopTest();
+
+        // Verify results
         System.assertNotEquals(null, result);
-        System.assertEquals(5, ((List<PurchaseOrder__c>)result.get('orders')).size());
-        System.assertEquals(2, result.get('totalPages'));
+        System.assertEquals(1, result.get('totalPages'));
+        System.assertEquals(1, ((List<PurchaseOrder__c>)result.get('orders')).size());
     }
 
     @isTest
-    static void testGetProductsWithMock() {
-        // Use the mock method
-        Map<String, Object> result = MyOrderControllerMock.mockGetProducts('Test', 1, 5, 'Name', 'ASC');
+    static void testGetProducts() {
+        // Create a mock for IOrderSelector
+        fflib_Mock mockOrderSelector = new fflib_Mock(IOrderSelector.class);
+        mockOrderSelector.setup('getProducts', new Map<String, Object>{
+            'products' => new List<Product2>{
+                new Product2(Name = 'Test Product', Quantity__c = 10, Product_Price__c = 20.00)
+            },
+            'totalPages' => 1
+        });
 
-        // Assertions
+        // Inject the mock into the controller
+        MyOrderController.orderSelector = (IOrderSelector) mockOrderSelector;
+
+        // Test method
+        Test.startTest();
+        Map<String, Object> result = MyOrderController.getProducts('Test', 1, 10, 'Name', 'ASC');
+        Test.stopTest();
+
+        // Verify results
         System.assertNotEquals(null, result);
-        System.assertEquals(5, ((List<Product2>)result.get('products')).size());
-        System.assertEquals(2, result.get('totalPages'));
+        System.assertEquals(1, result.get('totalPages'));
+        System.assertEquals(1, ((List<Product2>)result.get('products')).size());
     }
 
     @isTest
-    static void testPlaceOrderWithMock() {
-        // Setup mock data
-        List<Product2> mockProducts = new List<Product2>();
-        for (Integer i = 0; i < 3; i++) {
-            mockProducts.add(new Product2(Id = 'mockProductId' + i, Name = 'Test Product ' + i, Quantity__c = 10, Product_Price__c = 20.0));
-        }
+    static void testPlaceOrder() {
+        // Create a mock for IPlaceOrderService
+        fflib_Mock mockPlaceOrderService = new fflib_Mock(IPlaceOrderService.class);
+        mockPlaceOrderService.setup('placeOrder', 'Order successfully placed');
 
-        // Use the mock method
+        // Inject the mock into the controller
+        MyOrderController.placeOrderService = (IPlaceOrderService) mockPlaceOrderService;
+
+        // Setup test data
+        List<Product2> products = new List<Product2>{
+            new Product2(Name = 'Test Product', Quantity__c = 10, Product_Price__c = 20.00)
+        };
+
+        // Test method
         Test.startTest();
-        String response = MyOrderControllerMock.mockPlaceOrder(mockProducts);
+        String result = MyOrderController.placeOrder(products);
         Test.stopTest();
 
-        // Assertions
-        System.assertEquals('order successfully placed', response);
+        // Verify results
+        System.assertEquals('Order successfully placed', result);
     }
 
     @isTest
-    static void testPlaceOrderWithEmptyList() {
-        // Test method with empty order items
-        Test.startTest();
-        try {
-            MyOrderControllerMock.mockPlaceOrder(new List<Product2>());
-            System.assert(false, 'Expected AuraHandledException was not thrown');
-        } catch (AuraHandledException e) {
-            System.assertEquals('No items to place an order.', e.getMessage());
-        }
-        Test.stopTest();
-    }
+    static void testUpdateQuantity() {
+        // Create a mock for IPlaceOrderService
+        fflib_Mock mockPlaceOrderService = new fflib_Mock(IPlaceOrderService.class);
+        mockPlaceOrderService.setup('updateQuantity', null); // No return value needed
 
-    @isTest
-    static void testUpdateSalesColumnWithMock() {
-        // Setup mock data
-        Id mockRecordId = 'mockLineItemId'; // Simulate a valid record Id
+        // Inject the mock into the controller
+        MyOrderController.placeOrderService = (IPlaceOrderService) mockPlaceOrderService;
 
-        // Use the mock method
+        // Setup test data
+        PurchaseOrderLineItem__c lineItem = new PurchaseOrderLineItem__c(Quantity__c = 5);
+        insert lineItem;
+
+        // Test method
         Test.startTest();
-        MyOrderControllerMock.mockUpdateSalesColumn(mockRecordId, 15);
+        MyOrderController.updateQuantity(lineItem.Id, 10);
         Test.stopTest();
 
-        // Assertions can be added here if needed, but since this is a mock, we assume success
-        System.assert(true); // Just to indicate the test ran successfully
-    }
-
-    @isTest
-    static void testUpdateSalesColumnWithInvalidValue() {
-        // Test method with invalid quantity
-        Test.startTest();
-        try {
-            MyOrderControllerMock.mockUpdateSalesColumn('mockLineItemId', 0);
-            System.assert(false, 'Expected AuraHandledException was not thrown');
-        } catch (AuraHandledException e) {
-            System.assertEquals('Quantity must be greater than zero.', e.getMessage());
-        }
-        Test.stopTest();
+        // Verify that the mock was called
+        System.assert(mockPlaceOrderService.verify('updateQuantity', new List<Object>{lineItem.Id, 10}));
     }
 }
